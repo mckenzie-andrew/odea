@@ -51,13 +51,9 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - "Phase 1: Foundations":
-    - "01: Syntax & Select": phase_1/01_syntax.md
+  - "SQL and Internals ":
+    - "00: Welcome": sql_and_internals/00_table_of_contents.md
     - "02: Filtering & Logic": phase_1/02_filtering.md
-  - "Phase 2: Relational Logic":
-    - "01: Joins & Keys": phase_2/01_joins.md
-  - "Phase 3: Internals":
-    - "Row vs Column Store": phase_3/01_storage.md
 
 extra_css:
   - stylesheets/extra.css
