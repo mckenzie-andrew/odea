@@ -63,6 +63,7 @@ nav:
       - "7: JOIN Queries": databases_and_sql/structured_query_language/7_join_queries.md
       - "8: Subqueries": databases_and_sql/structured_query_language/8_subqueries.md
       - "9: Advanced Functions": databases_and_sql/structured_query_language/9_advanced_functions.md
+      - "10: Views": databases_and_sql/structured_query_language/10_views.md
     - Set Theory:
       - "0: Welcome": databases_and_sql/set_theory/0_table_of_contents.md
 

@@ -15,15 +15,6 @@ Before we start nesting code like Russian dolls, we need to understand the "shap
 Your database engine is strictly typed regarding shapes. You cannot compare a specific `price` (a single number) to a whole table of products.
 
 ### The Four Shapes
-Excalidraw Visual Description: Create a diagram titled "The Return Shapes of Subqueries".
-
-Scalar: Draw a single small square containing the number 42. Label it "Single Value".
-
-Column: Draw a tall, thin rectangle divided into three stacked squares (1, 5, 9). Label it "List of Values".
-
-Row: Draw a wide, short rectangle divided into three side-by-side squares ("Alice", 24, US). Label it "Single Record".
-
-Table: Draw a standard grid (3x3). Label it "Derived Table".
 
 **1. Scalar Subqueries (One Row, One Column)**
 This is the simplest form. The subquery returns exactly one value (one row, one column). You can treat this result exactly like a number or a string.

@@ -40,10 +40,6 @@ This is particularly useful for validation logic or finding bad data imports.
 ### The Scalpel: `SUBSTRING`
 If `concat` is the glue, `SUBSTRING` is the knife. It allows you to extract a portion of a string based on a starting position and a length.
 
-Narrative for an Excalidraw Image:
-
-Imagine a strip of paper with the text "Hello World" written on it. Beneath the letters are index numbers. SQL (usually) uses 1-based indexing. An arrow points to the letter 'H' at index 1, and another arrow points to the letter 'o' at index 5. A pair of scissors is cutting out the segment "ell". The visual should convey that we define a start (index 2) and a length (3 characters).
-
 ```sql
 SELECT
     product_code,
