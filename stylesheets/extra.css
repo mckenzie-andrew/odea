@@ -1,0 +1,17 @@
+img {
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    border-radius: 4px;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+    height: 100px;
+}
+
+.md-header__button.md-logo:hover {
+    opacity: 0.8;
+    transform: scale(1.06);
+    transition: all 0.2s ease-in-out;
+}
