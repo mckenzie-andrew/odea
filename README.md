@@ -1,7 +1,7 @@
 # The Data Engineering Curriculum
 
 [![Status](https://img.shields.io/badge/Status-Active_Development-blue)]()
-[![License](https://img.shields.io/badge/License-MIT-green)]()
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 Welcome to the open-source curriculum for **The Data Engineering Commons**. This repository serves as the "textbook" for our learning path.
 
