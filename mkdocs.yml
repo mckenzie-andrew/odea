@@ -57,6 +57,7 @@ nav:
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
       - "2: Filtering and Sorting": databases_and_sql/structured_query_language/2_filtering_and_sorting.md
       - "3: Row-Level Functions (Scalar)": databases_and_sql/structured_query_language/3_row_level_functions.md
+      - "4: Aggregation and Grouping": databases_and_sql/structured_query_language/4_aggregation_and_grouping.md
     - Set Theory:
       - "0: Welcome": databases_and_sql/set_theory/0_table_of_contents.md
 
