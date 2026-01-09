@@ -1,27 +1,25 @@
-# The Data Engineering Curriculum
+# The Specs: Data Engineering Curriculum
+Welcome to **The Specs** for [The Open Conduit](https://github.com/OpenConduit).
 
-[![Status](https://img.shields.io/badge/Status-Active_Development-blue)]()
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+This repository serves as the **architectural blueprint** for our learning path. It contains the core theory, design patterns, and foundational knowledge required to build modern data infrastructure.
 
-Welcome to the open-source curriculum for **The Data Engineering Commons**. This repository serves as the "textbook" for our learning path.
+## 📘 What is this?
+In the world of engineering, you do not pour concrete until you have reviewed the drawings. This repository is that set of drawings.
 
-## 📖 What is this?
-This is a structured learning path designed to take you from the basics of computer science and database theory to complex distributed systems and modern data orchestration.
+It is a structured documentation path designed to take you from the first principles of computing and database theory to the complexity of distributed systems and governance.
 
-Unlike scattered blog posts, this curriculum is designed to be read:
-1.  **Linearly:** For those starting their journey.
-2.  **Referentially:** For professionals needing a refresher on specific topics.
+Unlike scattered blog posts or vendor-specific documentation, these specs are designed to be used in two ways:
+1. **Linearly (The Student)**: Read from start to finish to build a complete mental model of the discipline.
+2. **Referentially (The Pro)**: Used as a "Standard Operating Procedure" to refresh your memory on specific architectural patterns (e.g., *Normalization forms or Idempotency*).
 
-## 🔗 Relationship to "The Labs"
-Theory is useless without practice. This repository works in tandem with **[The Labs](https://github.com/DECommons/labs)**.
-* **Here:** You learn *why* we use a tool and *how* it fits into the architecture.
-* **There:** You spin up the container and write the code.
+## 🔗 The Connection to "The Build"
+Theory is useless without execution. This repository works in tandem with [The Build (Labs)](https://github.com/OpenConduit/labs).
 
-## 🚀 Roadmap
-* [ ] Module 1: Foundations of Data
-* [ ] Module 2: The ETL/ELT Paradigm
-* [ ] Module 3: Batch vs. Stream
-* [ ] Module 4: Orchestration & Modeling
+| The Specs (This Repo) | The Build (Labs Repo) |
+|:---|:---|
+| The "Why" | The "How" |
+| Focuses on architecture and design. | Focuses on implementation and code.
+| "How does an index work?" | "Run this Docker container to optimize an index." |
 
-## 🤝 Contributing
-This is a living document. If you find an error, an outdated concept, or a missing topic, please open an Issue or a Pull Request.
+---
+*Maintained by the maintainers of The Open Conduit.*

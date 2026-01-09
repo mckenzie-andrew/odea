@@ -460,7 +460,7 @@ Which of the following scenarios requires the `HAVING` clause?
 <!-- mkdocs-quiz results -->
 
 ## Lab
-Please complete module 43's labs in the companion GitHub repository.
+Please complete module 4's labs in the companion GitHub repository.
 
 ## Lab Solutions
 
