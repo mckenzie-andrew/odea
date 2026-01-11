@@ -65,6 +65,7 @@ nav:
       - "7: Subqueries and CTEs": databases_and_sql/structured_query_language/7_subqueries_and_ctes.md
       - "8: Window Functions": databases_and_sql/structured_query_language/8_window_functions.md
       - "9: Creating Database Objects": databases_and_sql/structured_query_language/9_creating_database_objects.md
+      - "10: Modifying Data": databases_and_sql/structured_query_language/10_modifying_data.md
     - Set Theory:
       - "0: Welcome": databases_and_sql/set_theory/0_table_of_contents.md
 
