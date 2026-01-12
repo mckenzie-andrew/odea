@@ -55,7 +55,7 @@ nav:
   - Databases and SQL:
     - databases_and_sql/index.md
     - Structured Query Language:
-      - "Welcome": databases_and_sql/structured_query_language/0_table_of_contents.md
+      - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
       - "2: Filtering and Sorting": databases_and_sql/structured_query_language/2_filtering_and_sorting.md
       - "3: Row-Level Functions (Scalar)": databases_and_sql/structured_query_language/3_row_level_functions.md
