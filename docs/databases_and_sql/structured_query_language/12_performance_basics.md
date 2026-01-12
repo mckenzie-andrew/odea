@@ -15,7 +15,7 @@ You have to open to page 1. You read it. Does it mention chainsaws? No. You turn
 
 In database terminology, this is called a **full table scan**.
 
-!!! note "The Default Behavior"
+!!! info "Under the Hood: The Heap"
 
     By default, a database has no special organization for finding data inside a table. It just stores rows in the order you inserted them (mostly). When you run a query filtering on a column, the engine has no choice but to check every single row to see if it matches.
 
@@ -104,7 +104,7 @@ Every time you `INSERT`, `UPDATE`, or `DELETE` a row in your table, the database
 
 If you have 10 indexes on a table, a single `INSERT` statement has to update the table *and* 10 different trees. This can slow your write operations down to a crawl.
 
-!!! warning "The Goldilocks Zone"
+!!! example "Analogy: The Goldilocks Zone"
 
     - **Too Few Indexes**: Your `SELECT` queries are slow (full table scans).
     - **Too many indexes**: Your `INSERT/UPDATE` commands are slow (index maintenance).
@@ -127,7 +127,7 @@ This is the textbook analogy we used earlier. The data is in one place (the chap
 
 - You can have many non-clustered indexes on a table.
 
-!!! abstract "The Library"
+!!! example "Analogy: The Library"
 
     - **Clustered Index**: The Dewey Decimal System on the shelves. The books are physically arranged by this ID.
     - **Non-Clustered Index**: The computer catalog where you search by "Author" or "Title". It tells you which shelf to walk to.
@@ -141,7 +141,7 @@ You can build the most perfect, beautiful B-Tree index on your `order_date` colu
 
 When a query is written in a way that allows the engine to utilize an index, we call it **SARGable**.
 
-!!! note "SARGable"
+!!! info "Vocabulary: SARGable"
 
     **SARGable** stands for Search Argument-able. It is an ugly acronym for a beautiful concept. Can the database use the index to find the data, or must it scan every row?
 
@@ -296,7 +296,7 @@ You simply stick it in front of your query:
 EXPLAIN SELECT * FROM users WHERE email = 'bob@example.com';
 ```
 
-!!! note
+!!! warning "The Execution Trap"
     
     `EXPLAIN` usually just shows you the *estimated* plan without running the query. If you want to run the query *and* see the actual time it took, many systems use `EXPLAIN ANALYZE`.
 
@@ -386,7 +386,7 @@ You are reviewing a query to ensure it is **SARGable** (index-friendly). Which o
 </quiz>
 
 <quiz>
-Why is the query `SELECT * FROM users WHERE YEAR(created_at) = 2023` considered Non-SARGable?
+Why is the query `SELECT * FROM users WHERE YEAR(created_at) = 2023` considered non-SARGable?
 - [ ] The syntax requires single quotes around the year 2023.
 - [ ] The database does not support data functions in the `WHERE` clause.
 - [x] The function `YEAR()` must be applied to every row's `created_at` value before comparison, forcing a full table scan.

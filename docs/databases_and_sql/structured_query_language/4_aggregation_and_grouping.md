@@ -33,7 +33,7 @@ SELECT COUNT(phone_number) FROM employees;
 -- Result: 8
 ```
 
-!!! warning "The Performance Myth"
+!!! tip "Myth Buster: COUNT(*)"
 
     You might hear rumors that `COUNT(id)` is faster than `COUNT(*)`. In modern databases (like PostgreSQL), `COUNT(*)` is highly optimized. Use `COUNT(*)` unless you specifically need to exclude NULLs.
 
@@ -180,7 +180,7 @@ GROUP BY department;
 ### The Golden Rule of Grouping
 This is the most common error message in SQL. Memorize this rule.
 
-!!! note "The Golden Rule"
+!!! warning "The Golden Rule of Aggregation"
 
     If you have a `GROUP BY` clause, **every column** in your `SELECT` list must be either.
 
@@ -248,7 +248,7 @@ GROUP BY EXTRACT(YEAR FROM order_date)
 ORDER BY sales_year;
 ```
 
-!!! note 
+!!! tip "Syntax Shortcut: Ordinals & Aliases" 
 
     In Postgres and some other modern SQL dialects, you can simply `GROUP BY 1` or `GROUP BY sales_year` (the alias), but strict standard SQL, requires repeating the expressions.
 
@@ -328,7 +328,7 @@ GROUP BY department          -- Step 2: Bucket
 HAVING AVG(salary) > 100000; -- Step 3: Filter Groups
 ```
 
-!!! abstract "The Party Invitation"
+!!! example "Analogy: The Party Invitation"
 
     - `WHERE`: The bouncer at the door. "You must be 21 to enter." (Filtering individuals).
     - `GROUP BY`: The guests mingle and form groups (the dancers, the drinkers, the talkers).
@@ -372,7 +372,7 @@ graph TD
 ## Quiz
 
 <quiz>
-You have a table with 5 rows. THe `phone_number` column is `NULL` for 2 of those rows. What is the result of `SELECT COUNT(phone_number) FROM table;`?
+You have a table with 5 rows. The `phone_number` column is `NULL` for 2 of those rows. What is the result of `SELECT COUNT(phone_number) FROM table;`?
 - [x] 3
 - [ ] NULL
 - [ ] 5

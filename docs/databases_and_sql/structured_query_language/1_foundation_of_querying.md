@@ -30,7 +30,7 @@ Let's break down exactly what happened here, because even this one line is doing
 2. `'Hello, World'`: This is a **string literal**. In SQL, text is almost always wrapped in single quotes (`'`).
 3. `;` **(The Semicolon)**: This is the **statement terminator**. It tells the database, "I am done speaking; please execute what I just said."
 
-!!! note "The Semicolon"
+!!! tip "The Semicolon"
 
     In many modern SQL tools, if you only write one line, the tool is smart enough to run it without the semicolon. However, developing the muscle memory to type it is crucial. Without it, the database won't know where one query ends and the next begins.
 
@@ -275,7 +275,7 @@ In set theory, a set is an *unordered* collection of distinct objects. A databas
 
 Usually, this means the order they were inserted on the hard drive, but you cannot rely on that. If you run a query today, you might get 1, 2, and 3. If the database administrator reorganizes the hard drive tonight, you might run the same query tomorrow and get products 50, 99, and 200.
 
-!!! info "Non-Determinism"
+!!! warning "Non-Determinism"
 
     Without an `ORDER BY` clause, `LIMIT` is **non-deterministic**. It is perfect for "getting a feel" for the data but terrible for specific reporting. Never assume the "first 10 rows" are the "newest 10 rows" or the "top 10 rows" unless you explicitly asked for sorting.
 
@@ -293,7 +293,7 @@ LIMIT 3 OFFSET 3;
 - `LIMIT 3`: "Give me 3 rows."
 - `OFFSET 3`: "...but skip the first 3 rows you find before you start counting."
 
-!!! note "Analogy: The Buffet Line"
+!!! example "Analogy: The Buffet Line"
 
     - **LIMIT 3**: You take the first 3 plates of food you see.
     - **OFFSET 3**: You walk past the first 3 plates, ignore them, and *then* take the next 3.
@@ -355,7 +355,7 @@ FROM orders;
 1. `SELECT DISTINCT`: The keyword is placed immediately after `SELECT`. It applies to the *entire row* being generated.
 2. `payment_method`: The column we are examining.
 
-!!! abstract "The Sieve"
+!!! example "Analogy: The Sieve"
 
     Imagine pouring a bucket of sand and rocks through a sieve. `SELECT` picks up the bucket. `FROM` tells you which bucket to grab. `DISTINCT` is the mesh screen that catches the duplicates and only lets unique items fall through to the display.
 
@@ -521,7 +521,7 @@ The `SELECT` statement determines which rows are included in your results.
 </quiz>
 
 <quiz>
-You run the query `SELECT * FROM products LIMIT 5;` on Monday, and again on Tuesday. No data was added or deleted, but you get different results. Why?
+You run the query `SELECT * FROM products LIMIT 5;` on Monday and again on Tuesday. No data was added or deleted, but you get different results. Why?
 - [ ] You forgot to use the `DISTINCT` clause
 - [ ] `LIMIT` removes random rows by default
 - [ ] The database is broken

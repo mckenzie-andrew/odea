@@ -35,7 +35,7 @@ Let's break this down:
 4. `VALUES`: This keyword acts as a separator. Everything before it is *metadata* (where is it going?); everything after it is the *actual* data.
 5. `(1, 'Rusty Dagger', ...)`: This is the payload. A comma-separated list of literals.
 
-!!! abstract "The Scantron Sheet"
+!!! example "Analogy: The Scantron Sheet"
 
     Think of a database row like a standardized test bubbling sheet (Scantron).
 
@@ -60,7 +60,7 @@ This works...for now. The database looks at the table definition, sees there are
 
 **Do not do this**.
 
-!!! warning "The Schema Drift"
+!!! warning "The Schema Drift Trap"
 
     Imagine you write the "lazy" query above in your application code. It runs fine for months.
 
@@ -138,7 +138,7 @@ WHERE is_damaged = FALSE;
 2. **Column Mapping**: The column names in `new_shipment` (`product_name`) *do not have to match* the name in `inventory` (`item_name`). SQL only cares about the **data types** and the **order**.
 3. **Filtering**: We used a `WHERE` clause. We are only inserting undamaged items. This is the beauty of set theory: we defined a specific subset of data and poured it into our table.
 
-!!! note "Transaction Logs"
+!!! info "Under the Hood: Transaction Logs"
 
     When you run a massive `INSERT ... SELECT` that moves a million rows, the database writes every single change to a transaction log for safety. If your disk is full, the operation might fail. We'll discuss how to manage this later in the chapter with transactions.
 
@@ -180,7 +180,7 @@ SET price = 0.00;
 
 If you run the code above, congratulations: you just gave away your entire inventory for free. Every single row's price is now 0.00. There is no "undo" button in SQL.
 
-!!! abstract "The Sniper vs. The Nuke"
+!!! example "Analogy: The Sniper vs. The Nuke"
 
     - **With `WHERE`**: You are a sniper. You pick a specific target (`item_id = 1`) and make the precise change.
     - **Without `WHERE`**: You are a nuke. You change everything in the blast radius (the whole table).
@@ -253,7 +253,7 @@ When you run a `DELETE` statement, the database engine goes *row by row*. It loo
 
 Because it does this work row-by-row, `DELETE` can be relatively slow if you are deleting millions of records.
 
-!!! warning "The `WHERE` Clause (Again)"
+!!! warning "The `WHERE` Clause Trap"
 
     Just like `UPDATE`, if you omit the `WHERE` clause, **you delete everything**.
 
@@ -390,7 +390,7 @@ Transactions are essential for data integrity. If you have a script that does 50
 
 If an error occurs on command #49 (e.g., the server crashes or you violate a data constraint), the database engine will automatically **ROLLBACK** the entire transaction. It ensures you never end up with half-finished data (like Alice losing money that Bob never gets).
 
-!!! warning "The Lockout"
+!!! warning "The Lockout Trap"
 
     When you begin a transaction and modify a row, you **lock** that row. No one else can update that row until you finish.
 
@@ -420,7 +420,7 @@ You need to copy all rows from a `new_shipments` table into your main `inventory
 What is the result of executing the following query? `UPDATE employees SET salary = 500000;`
 - [ ] It prompts the user for confirmation before proceeding.
 - [x] The salary for every single row in the employees table is set to 500,000.
-- [ ] It updates only the fist row it finds.
+- [ ] It updates only the first row it finds.
 - [ ] The database throws an error because a `WHERE` clause is mandatory.
 
 </quiz>
@@ -437,7 +437,7 @@ You want to increase the price of a specific item by $5.00, regardless of its cu
 <quiz>
 Which of the following describes the key difference between `DELETE` and `TRUNCATE`?
 - [ ] `DELETE` is faster than `TRUNCATE` because it scans the table first.
-- [x] `TRUNCATE` is the entire table whereas `DELETE` is specific rows designated by the query.
+- [x] `TRUNCATE` is the entire table, whereas `DELETE` is specific rows designated by the query.
 - [ ] `TRUNCATE` allows you to use a `WHERE` clause.
 - [ ] `DELETE` can be rolled back, but `TRUNCATE` cannot.
 

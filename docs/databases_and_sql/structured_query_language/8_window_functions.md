@@ -37,7 +37,7 @@ FROM employees;
 
 When the database looks at an employee in "Sales", the "window" is just the other sales people. When it looks at an "Engineer", the "window" slides over to include only Engineers.
 
-!!! abstract "The Reference Library"
+!!! example "Analogy: The Reference Library"
 
     - `GROUP BY` is like taking all the books in the library, burning them, and just writing "Science: 500 books" on a sticky note. You lost the individual books.
     - `PARTITION BY` is like walking through the library. You pick up a specific book (the current row).  You look around at the shelf it belongs to (the partition). You write that number on a bookmark and put it inside the specific book. You put the book back on the shelf unharmed.
@@ -267,7 +267,7 @@ What is the primary difference between `GROUP BY` and a window function using `O
 
 <quiz>
 In the clause `OVER (PARTITION BY department)`, what does the `PARTITION BY` keyword do?
-- [x] It divides the result set into specific groups (windows) for calculation, resetting the function fo reach group.
+- [x] It divides the result set into specific groups (windows) for calculation, resetting the function for each group.
 - [ ] It sorts the results by department.
 - [ ] It removes duplicate department rows.
 - [ ] It hides columns that are not related to the department.
@@ -275,7 +275,7 @@ In the clause `OVER (PARTITION BY department)`, what does the `PARTITION BY` key
 </quiz>
 
 <quiz>
-Which ranking function handles ties by assigning the same rank to tied rows and leaving a gap in the number sequence (e.g, 1, 1, 3)?
+Which ranking function handles ties by assigning the same rank to tied rows and leaving a gap in the number sequence (e.g., 1, 1, 3)?
 - [ ] `DENSE_RANK()`
 - [x] `RANK()`
 - [ ] `ROW_NUMBER()`

@@ -58,7 +58,7 @@ We are about to learn functions that transform data.
 
 If you try to jam the wrong puzzle piece into the function, SQL will throw a **type error**.
 
-!!! abstract "The Blender"
+!!! example "Analogy: The Blender"
 
     Scalar functions are like blenders.
 
@@ -156,7 +156,7 @@ SELECT
 FROM products;
 ```
 
-!!! note "Whitespace Counts"
+!!! warning "Whitespace Counts"
 
     `LENGTH('A ')` is 2. That invisible space at the end counts as a character.
 
@@ -334,7 +334,7 @@ FROM orders;
 
 **Common Parts**: `YEAR`, `MONTH`, `DAY`, `HOUR`, `MINUTE`, `SECOND`, `DOW` (Day of week).
 
-!!! note "Dialect Differences"
+!!! info "Dialect Cheat Sheet: Year Extraction"
 
     - **Postgres**: `EXTRACT(YEAR FROM column)` or `DATE_PART('year', column)`
     - **SQL Server**: `DATEPART(year, column)` or `YEAR(column)`
@@ -423,7 +423,7 @@ SELECT
 FROM orders;
 ```
 
-!!! note "Common Target Types"
+!!! tip "Cheat Sheet: Common Target Types"
 
     When casting in Postgres, these are the types you will use most often:
 
@@ -557,7 +557,7 @@ END
 
 *Why is this bad?* If an order is $2000, it is technically greater than 500. The first condition triggers, the label becomes 'Medium Value,' and the database stops checking. The $2000 order never gets a chance to be checked against the greater than 1000 rule.
 
-!!! note "Best Practice: The Funnel"
+!!! tip "Best Practice: The Funnel"
 
     When working with numeric ranges, always write your logic from **most specific** to **least specific**.
 
@@ -713,7 +713,7 @@ Which PostgreSQL-specific operator is used to cast data types (e.g., turning a s
 </quiz>
 
 <quiz>
-What is the result of th expression `'10' + 5` in a strict SQL environment like PostgreSQL?
+What is the result of the expression `'10' + 5` in a strict SQL environment like PostgreSQL?
 - [ ] `'105'`
 - [x] An error
 - [ ] `NULL`

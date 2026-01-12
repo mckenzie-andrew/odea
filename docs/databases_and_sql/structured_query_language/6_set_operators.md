@@ -117,7 +117,7 @@ What is the primary difference between `UNION` and `UNION ALL`?
 
 <quiz>
 You have a query `SELECT id FROM table_A` (returns 10 rows) and `SELECT id FROM table_B` (returns 5 rows). If you use `UNION ALL`, how many rows will be in the result?
-- [ ] It depends on how many duplicate exist.
+- [ ] It depends on how many duplicates exist.
 - [x] 15
 - [ ] 10
 - [ ] 50
@@ -143,7 +143,7 @@ The order of queries matters for the `EXCEPT` operator (i.e., `Query A EXCEPT Qu
 <quiz>
 Which of the following is NOT a requirement for two queries to be 'union compatible'?
 - [ ] The columns must be in the same order.
-- [x] The columns must have the exact same name.
+- [x] The columns must have the same name.
 - [ ] The columns must have compatible data types.
 - [ ] They must have the same number of columns.
 

@@ -10,7 +10,7 @@ To handle this, we need to stop writing "statements" and start writing **scripts
 ## 11.1 Variables and Logic (`IF`/`ELSE`)
 In algebra, you learned that `x = 5`. In SQL, we have the same concept. A **variable** is a temporary placeholder (a labeled bucket) where we can store a value to use later.
 
-!!! note "The Dialect Divide"
+!!! info "Context: The Dialect Divide"
 
     This is where SQL engines really start to differentiate from each other. For this entire  module we will be focused purely on Postgres syntax, as that is what we use in our labs. Postgres syntax is specifically called **PL/pgSQL (Procedural Language/PostgreSQL)**.
 
@@ -30,7 +30,7 @@ BEGIN
 END $$
 ```
 
-!!! abstract "The Southern Dialect"
+!!! example "Mnemonic: The Southern Dialect"
 
     You have almost certainly watched at least one film that took place in the early American South. In those movies they often started their statements with, "I do declare ...", before they actually declared anything. Since the syntax for the `DO` block is a little different from what we are used to, so far, this little aside may help you remember now (at least the first part).
 
@@ -90,7 +90,7 @@ BEGIN
 END $$;
 ```
 
-!!! warning "Strictness Ahead"
+!!! warning "The Strictness Trap"
 
     The query used with `SELECT ... INTO` must return **exactly one row**.
 
@@ -152,7 +152,7 @@ Life is rarely binary. It's not just "stock" or "no stock". Occasionally it's "I
 
 If you need to check multiple specific conditions, avoid nesting giant stacks of `IF..ELSE IF...`. Instead, use the `ELSIF` keyword.
 
-!!! warning "Spelling Bee"
+!!! warning "Syntax Trap: ELSIF"
 
     It is spelled `ELSIF`. There is no "E" in the middle. It is not `ELSEIF`. If you type `ELSEIF`, Postgres will look at you with confusion and throw a syntax error.
 
@@ -450,7 +450,7 @@ The resulting string becomes:
 
 The database executes both commands blindly. You have just been hacked.
 
-!!! abstract "The Teleprompter"
+!!! example "Analogy: The Teleprompter"
 
     Imagine a news anchor (the Database) who reads whatever is on the teleprompter. **Static SQL** is a script written by the producer. It's safe. **Dynamic SQL** allows the public to text a message to the teleprompter. if someone texts, "I quit!", the anchor will read "I quit!" on live TV because they are just following instructions. 
 
@@ -502,7 +502,7 @@ Dynamic SQL is complex, difficult to debug, and risky. You should only use it wh
 ## Quiz
 
 <quiz>
-In a Postgres PL/pgSQL block, which operator is strictly use dto assign a value to a variable?
+In a Postgres PL/pgSQL block, which operator is strictly used to assign a value to a variable?
 - [ ] `<-`
 - [ ] `SET`
 - [ ] `=`

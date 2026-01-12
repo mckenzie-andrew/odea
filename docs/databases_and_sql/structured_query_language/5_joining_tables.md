@@ -49,7 +49,7 @@ ON o.customer_id = c.customer_id;
 - `orders AS o`: From now on, inside this query, `orders` is just `o`.
 - `customers AS c`: `customers` is just `c`.
 
-!!! note "Pro Tip: The `AS` is Optional"
+!!! tip "Pro Tip: The `AS` is Optional"
 
     You will often see developers skip the `AS` keyword for table aliases: `FROM orders o JOIN customers c`. This is valid and very common.
 
@@ -114,7 +114,7 @@ The `INNER JOIN` is the "intersection" of two sets. It follows a strict rule: **
 
 If a row in table A cannot find a corresponding friend in table B, it is immediately discarded from the results. It effectively vanishes.
 
-!!! abstract "The Handshake"
+!!! example "Analogy: The Handshake"
 
     Imagine two lines of people walking toward each other.
 
@@ -309,7 +309,7 @@ WHERE o.order_id IS NULL;
 ### 2. The `RIGHT JOIN`
 The `RIGHT JOIN` is simply the mirror image. It says, **"The Right Table is King."** It keeps everything from the second table and fills the first table with NULLs if no match is found.
 
-!!! note "The Left-Handed Scissors"
+!!! tip "Best Practice: The Right Join Rule"
 
     You will rarely see `RIGHT JOIN` in production code. Why? Because English is read Left-to-Right. It is cognitively much easier to think "Start with Customers, then attach Orders" (`Customers LEFT JOIN Orders`) than "Attach Orders to Customers, but ensure we keep **all** Orders" (`Customers RIGHT JOIN Orders`).
 
@@ -378,7 +378,7 @@ FROM shirts
 CROSS JOIN pants;
 ```
 
-!!! note 
+!!! warning "Legacy Systems: Implicit Joins" 
 
     In some older SQL dialects, you might see this written as a comma-separated list like `FROM shirts, pants;`. This is "implicit join" syntax. Avoid it. It is confusing and outdated.
 
@@ -509,7 +509,7 @@ You perform a `LEFT JOIN` between `Customers` (Left) and `Orders` (Right). If a 
 </quiz>
 
 <quiz>
-A `CROSS JOIN` requires an `ON` clause to specify how the tables are linked.
+An `CROSS JOIN` requires an `ON` clause to specify how the tables are linked.
 - [ ] True
 - [x] False
 
@@ -535,7 +535,7 @@ What is the primary purpose of a "self join"?
 
 <quiz>
 Why would you receive an 'Ambiguous column reference' error when running a JOIN query?
-- [x] Both tables have a column with the exact same name (e.g., `ID`), and you didn't specify which one you wanted.
+- [x] Both tables have a column with the same name (e.g., `ID`), and you didn't specify which one you wanted.
 - [ ] You used a `LEFT JOIN` instead of an `INNER JOIN`.
 - [ ] You forgot to add a `WHERE` clause.
 - [ ] You tried to join a table with 0 rows.
@@ -552,7 +552,7 @@ Which query pattern correctly identifies 'Orphans' (e.g., Customers who have NEV
 </quiz>
 
 <quiz>
-`A RIGHT JOIN B` produces the exact same logical result as `B LEFT JOIN A`.
+`A RIGHT JOIN B` produces the same logical result as `B LEFT JOIN A`.
 - [ ] True
 - [x] False
 

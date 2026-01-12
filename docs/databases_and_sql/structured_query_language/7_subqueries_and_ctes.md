@@ -18,7 +18,7 @@ A subquery is simply a `SELECT` statement wrapped in parentheses `()` and placed
 
 The query inside the parentheses is called the **inner query**. The query surrounding it is the **outer query**.
 
-!!! abstract "The Prep Chef"
+!!! example "Analogy: The Prep Chef"
 
     Think of the **outer query** as the head chef. They are plating the final dish to serve the customer.
 
@@ -165,7 +165,7 @@ There is no longer a simple "calculate once, replace with value" operation. The 
 6. **Row 2**: The database moves to Bob, who is in department 9.
 7. **Repeat**: IT runs the entire *inner query* again, but this time it injects department `9`.
 
-!!! tip "Performance Consideration"
+!!! warning "Performance Trap: The N +1 Problem"
 
     Because this inner query runs once for every row in the outer table, correlated subqueries can be **slow** on massive datasets. If you have 1,000,000 employees, you are running that aggregation query 1,000,000 times.
 
@@ -260,7 +260,7 @@ SELECT * FROM my_special_table;
 2. **The Parentheses**: Inside here is just a standard `SELECT` query.
 3. **The Main Query**: Immediately following the closing parenthesis, you write your final `SELECT`. You treat `my_special_table` exactly like a real table.
 
-!!! abstract "The 'Mise en place'"
+!!! example "The 'Analogy: The 'Mise en place'"
 
     In professional cooking, chefs practice *mise en place*. Before they start cooking the actual dish, they chop the onions, peel the garlic, and measure the spices into little bowls.
 
@@ -337,7 +337,7 @@ If you tried to write this using only subqueries, you would have to shove two ma
 2. **Reusability (within the query)**: If you define a CTE named `high_value_customers`, you can reference it twice in your main query (e.g., in a self-join) without having to copy-paste the definition code twice.
 3. **Debugging**: It is straightforward to debug CTEs. If the final output is wrong, you can just highlight the code inside the CTE, run it separately, and verify that "Step 1" is correct before moving to "Step 2."
 
-!!! note "CTE Scope"
+!!! warning "The Scope Trap"
 
     It is important to remember that a CTE is **ephemeral**. It only exists for the duration of that single query.
 
@@ -402,7 +402,7 @@ WITH RECURSIVE org_chart AS (
 SELECT * FROM org_chart;
 ```
 
-!!! note "Syntax Variations"
+!!! info "Syntax Check: WITH RECURSIVE"
 
     In PostgreSQL and MySQL, you must use the keyword `WITH RECURSIVE`. In SQL Server (T-SQL), you just write `WITH`, but the logic is identical.
 
@@ -577,7 +577,7 @@ When does a recursive CTE stop executing?
 </quiz>
 
 <quiz>
-A CTE defined in on query can be referenced in a completely separate query run 10 minutes later.
+A CTE defined in one query can be referenced in a completely separate query run 10 minutes later.
 - [ ] True
 - [x] False
 

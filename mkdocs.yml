@@ -71,7 +71,6 @@ nav:
     - Set Theory:
       - "0: Welcome": databases_and_sql/set_theory/0_table_of_contents.md
 
-
 extra_css:
   - stylesheets/extra.css
 

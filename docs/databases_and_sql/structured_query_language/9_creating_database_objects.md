@@ -11,7 +11,7 @@ In Set Theory, a set is a collection of distinct objects. In a database, a **tab
 
 To build this blueprint, we use a statement called `CREATE TABLE`.
 
-!!! note "DDL vs. DML"
+!!! info "Vocabulary: DDL vs. DML"
 
     Up until now, you have been writing **DML (Data Manipulation Language)** commands like `SELECT` that manipulate the data *inside* the containers.
 
@@ -172,7 +172,7 @@ The primary key is a "mega-constraint". It enforces two things at once:
 wizard_id INT PRIMARY KEY
 ```
 
-!!! abstract "The Social Security Number"
+!!! example "Analogy: The Social Security Number"
 
     Your name might be "John Smith." There are thousands of John Smiths. That is not a good identifier. Your social security number (or passport number) is your primary key. It is unique to you, and the government requires you to have one.
 
@@ -233,7 +233,7 @@ CREATE TABLE dim_wizards (
 
 - `REFERENCES`: This keyword tells the database *where* the foreign key points. It points to `dim_schools` specifically the `(school_id)` column inside it.
 
-!!! warning "The Chicken and the Egg"
+!!! tip "Workflow: The Chicken and the Egg"
 
     You cannot create the `dim_wizards` table *before* the `dim_schools` table exists. If you try, the database will complain, "I don't know what `dim_schools` is." You must build the parent table before the child table.
 
@@ -260,7 +260,7 @@ erDiagram
     }
 ```
 
-!!! note "Constraint Names"
+!!! tip "Best Practice: Naming Constraints"
 
     In the example above, we let the database automatically name our constraints. Behind the scenes, the database calls them something ugly like `PK__dim_wiza__3213E83F`.
 
@@ -398,7 +398,7 @@ CREATE TEMPORARY TABLE temp_evil_wizards (
 );
 ```
 
-!!! note "The 'Session' Concept"
+!!! example "Analogy: The Dedicated Phone Line"
 
     When you open your SQL tool and click "Connect,"  you start a **session**. It is a dedicated phone line between you and the database. Local temp tables live inside that phone line. If your internet blips and you reconnect, you get a *new* phone line (new session), and your old temp tables are gone.
 
@@ -484,7 +484,7 @@ graph LR
     style V1 fill:#f9f9,stroke:#3333,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
-!!! abstract "The Picture Frame"
+!!! example "Analogy: The Picture Frame"
 
     - **A Table** is a painting. The paint is dry. If the subject of the painting gets a haircut, the painting does not change.
     - **A View** is a picture frame held up to a window. When you look through it, you see the world exactly as it is *right* now. If the subject walks by with a haircut, you see the haircut. The view doesn't store the image; it just frames it for you.
@@ -501,7 +501,7 @@ You need to store the price of an item (e.g., 19.99) in a table. What data type 
 </quiz>
 
 <quiz>
-You are creating a table for users. You want to ensure ever user has a unique email address, but the email address is NOT the primary identifier for the row. Which constraint should you use?
+You are creating a table for users. You want to ensure every user has a unique email address, but the email address is NOT the primary identifier for the row. Which constraint should you use?
 - [x] `UNIQUE`
 - [ ] `PRIMARY KEY`
 - [ ] `CHECK`
@@ -531,7 +531,7 @@ In the statement `CREATE TABLE`, what character must separate every column defin
 What happens if you try to `DROP TABLE dim_schools` (the parent) while `dim_wizards` (the child) still has a foreign key pointing to it?
 - [ ] The database deletes both tables automatically.
 - [ ] The database archives the parent table.
-- [ ] The database deletes the parent and leaves teh child pointing to nothing.
+- [ ] The database deletes the parent and leaves the child pointing to nothing.
 - [x] THe database raises an error and blocks the deletion.
 
 </quiz>
@@ -574,8 +574,8 @@ Which constraint would you use to ensure that a `gold_balance` column never cont
 
 <quiz>
 Why is `VARCHAR(50)` generally preferred over `CHAR(50)` for storing names?
-- [x] `VARCHAR` saves storage space by not padding short names with empty spaces.
-- [ ] `VARCHAR` allows for a infinite number of characters.
+- [x] `VARCHAR` saves storage space by not padding short names with spaces.
+- [ ] `VARCHAR` allows for an infinite number of characters.
 - [ ] `CHAR` cannot store special characters.
 - [ ] `VARCHAR` is the only type that supports foreign keys.
 

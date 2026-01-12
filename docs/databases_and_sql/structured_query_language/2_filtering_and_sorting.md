@@ -72,7 +72,7 @@ FROM employees
 WHERE salary * 12 > 100000;
 ```
 
-!!! note
+!!! question "Do I really have to type the math twice?"
 
     Yes, you have to type the math twice. It feels redundant, but it ensures the logic is sound.
 
@@ -91,6 +91,7 @@ The `WHERE` clause relies on **predicate** (expressions that evaluate to `TRUE`,
 We start with the standard comparison operators.
 
 **1. Equality (`=`)**
+
 Used for exact matches.
 
 ```sql
@@ -107,7 +108,8 @@ SELECT * FROM employees WHERE id = 3;
   
     Always assume data is **case sensitive** to be safe. We will learn functions like `LOWER()` later, to handle this gracefully.
 
-**2. Inequality (`<>` or `!=`)
+**2. Inequality (`<>` or `!=`)**
+
 Used when you want everything except a specific value. Standard SQL uses `<>`, though most databases also accept the C-style `!=`.
 
 ```sql
@@ -228,7 +230,7 @@ WHERE (department = 'Sales' OR department = 'Marketing')
     AND salary > 100000;
 ```
 
-!!! note "Parentheses"
+!!! tip "Best Practice: Parentheses"
 
     Whenever you mix `AND` and `OR` in the same `WHERE` clause, **always** use parentheses. Even if you know the precedence rules perfectly, the parentheses make your intent clear to other humans reading your code.
 
@@ -241,7 +243,7 @@ SELECT * FROM employees
 WHERE NOT department = 'Engineering';
 ```
 
-!!! note
+!!! info "Syntax note: Inequality Operators"
 
     This is functionally identical to using `<>` or `!=`.
 
@@ -329,7 +331,7 @@ FROM products
 WHERE product_name LIKE '%Pro%';
 ```
 
-!!! abstract "The File Search"
+!!! tip "The File Search"
 
     Think of `%` like the asterisk `*` you use when searching for files on your computer (e.g., `*.jpg`). It tells the database, "I don't care what this part of the string looks like, as long as the rest matches."
 
@@ -402,7 +404,7 @@ In SQL, we have a special marker for "missing" or "unknown" information. It is c
 
 To understand this, let's look at the difference between `0`, `""` (empty string), and `NULL`.
 
-!!! abstract "The Cardboard Box"
+!!! example "Analogy: The Cardboard Box"
 
     - **0**: The box is there, and it contains the number 0.
     - **""**: (Empty string). The box is there, but it's empty.
@@ -634,9 +636,9 @@ Imagine you update your query later to add an ID column at the start: `SELECT pr
 ## Module Quiz
 
 <quiz>
-What is the primary function of the `WHERE` clause in a SQL query?
+What is the primary function of the `WHERE` clause in an SQL query?
 - [x] To filter which rows are returned based on a specific condition
-- [ ] TO sort the results in ascending or descending order
+- [ ] To sort the results in ascending or descending order
 - [ ] To select which columns are displayed in the output
 - [ ] To group rows together for aggregation
 
@@ -652,7 +654,7 @@ Consider the query: `SELECT price * 0.9 AS discounted_price FROM products WHERE 
 </quiz>
 
 <quiz>
-You want to find all employees who are in the "Sales" department OR the "Marketing" department, AND who also earn more than 100k. Which query correctly handles the order of operations?
+You want to find all employees who are in the "Sales" department OR the "Marketing" department AND who also earn more than 100k. Which query correctly handles the order of operations?
 - [ ] `WHERE dept = 'Sales' OR dept = 'Marketing' AND salary > 100000`
 - [x] `WHERE (dept = 'Sales' OR dept = 'Marketing') AND salary > 100000`
 - [ ] `WHERE dept = 'Sales' AND salary > 100000 OR dept = 'Marketing'`
@@ -661,7 +663,7 @@ You want to find all employees who are in the "Sales" department OR the "Marketi
 </quiz>
 
 <quiz>
-Which of the following conditions is the correct way to find rows where the `phone_number` columns is empty (`NULL`)?
+Which of the following conditions is the correct way to find rows where the `phone_number` column is empty (`NULL`)?
 - [ ] `WHERE phone_number == NULL`
 - [ ] `WHERE phone_number = NULL`
 - [x] `WHERE phone_number IS NULL`
@@ -691,13 +693,13 @@ If you write `ORDER BY last_name` without specifying ASC or DESC, how will the r
 How does the query `ORDER BY department ASC, salary DESC` sort the data?
 - [ ] It sorts strictly by salary, ignoring the department
 - [ ] It sorts departments Z-A, and within each department, sorts salaries lowest to highest
-- [ ] It sorts by department first, but ignores salary unless departments are `NULL`
+- [ ] It sorts by department first but ignores salary unless departments are `NULL`
 - [x] It sorts departments A-Z, and within each department, sorts salaries from highest to lowest
 
 </quiz>
 
 <quiz>
-Which of the following queries using `IN` is equivalent to: `WHERE state = 'NY' OR state = 'CA' OR state = 'TX'`?
+Which of the following queries using `IN` is equivalent to `WHERE state = 'NY' OR state = 'CA' OR state = 'TX'`?
 - [ ] `WHERE state HAS ('NY', 'CA', 'TX')`
 - [ ] `WHERE state = 'NY', 'CA', 'TX'`
 - [ ] `WHERE state IN 'NY' OR 'CA' OR 'TX'`
