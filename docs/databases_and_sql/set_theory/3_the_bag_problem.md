@@ -319,7 +319,7 @@ In "Survivor Logic," if you have three rows for User 101, which attribute is mos
 <quiz>
 If Set $A = \{x\}$ and Set $B = \{x\}$, what is the result of a **Bag** Union?
 - [ ] $\emptyset$
-- [x ] $\{x, x\}$
+- [x] $\{x, x\}$
 - [ ] $\{2x\}$
 - [ ] $\{x\}$
 

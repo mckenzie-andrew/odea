@@ -61,6 +61,7 @@ nav:
       - "1: defining the Set": databases_and_sql/set_theory/1_defining_the_set.md
       - "2: Elements and Membership": databases_and_sql/set_theory/2_elements_and_membership.md
       - "3: The Bag Problem": databases_and_sql/set_theory/3_the_bag_problem.md
+      - "4: Subsets and Supersets": databases_and_sql/set_theory/4_subsets_and_supersets.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
