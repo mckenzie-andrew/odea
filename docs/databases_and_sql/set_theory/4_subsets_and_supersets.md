@@ -244,7 +244,7 @@ What is the defining characteristic of a Proper Subset ($A \subset B$)?
 - [ ] It implies that $A$ and $B$ are disjoint (share no elements).
 - [ ] It must contain zero elements.
 - [ ] It must be larger than the Superset.
-- [x] It must strictly smaller than the Superset (at least one element is excluded).
+- [x] It must be strictly smaller than the Superset (at least one element is excluded).
 
 </quiz>
 

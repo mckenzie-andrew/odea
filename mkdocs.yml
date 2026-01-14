@@ -64,6 +64,7 @@ nav:
       - "4: Subsets and Supersets": databases_and_sql/set_theory/4_subsets_and_supersets.md
       - "5: Boolean Logic and Predicates": databases_and_sql/set_theory/5_boolean_logic_and_predicates.md
       - "6: The Void and the Unknown": databases_and_sql/set_theory/6_void_and_unknown.md
+      - "7: The Difference": databases_and_sql/set_theory/7_the_difference.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md

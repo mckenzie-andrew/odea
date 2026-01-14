@@ -325,6 +325,74 @@ $$
 
 "I am not not hungry" means "I am hungry." In code, if you see `NOT (NOT condition)`, just delete both `NOT`s. You are welcome.
 
+## 5.5 Disjoint Sets
+We just spent a bit of time talking about the conditions that bring data together—finding the overlap, the shared space, the "AND." But occasionally, the most important relationship between two groups of data is that they have **no relationship at all**.
+
+In Set Theory, when two sets have absolutely zero elements in common, we call them **Disjoint Sets**.
+
+Think of it like matter and antimatter. They can exist in the same universe, but they cannot occupy the same space. If they touch, things explode. In data engineering, if two sets that *should* be disjoint suddenly touch, your pipelines might not explode, but your dashboard certainly will.
+
+### The Definition of "None"
+Mathematically, we define disjoint sets by looking at their intersection. Two sets $A$ and $B$ are disjoint if and only if their intersection is the Empty Set.
+
+$$
+A \cap B = \emptyset
+$$
+
+There is no $x$ such that $x$ is in $A$ AND $x$ is in $B$.
+
+Visually, this is the saddest diagram in the world. It's just two circles standing at opposite ends of the room, refusing to make eye contact.
+
+```mermaid
+graph LR
+    subgraph Universe
+    direction LR
+    A((Set A)):::setA
+    B((Set B)):::setB
+    
+    A ~~~ B
+    end
+```
+
+### Why "Nothing" Matters
+You might be thinking, "Great, two things that have nothing to do with each other. Why do I care?"
+
+In logic and database design, proving that two sets are disjoint is often more critical than finding where they overlap. It is the foundation of **mutually exclusive** logic. Something we touched on earlier in this module.
+
+Imagine you are building a database for a hospital. You have a set of `Active_Patients` and a set of `Discharged_Patients`.
+
+- **Set A**: People currently in a bed.
+- **Set B**: People who have gone home.
+
+These sets **must** be disjoint. If you run a query and find a Patient ID that exists in both $A$ and $B$, you have a logical contradiction. A patient cannot be simultaneously in a bed and at home (unless quantum physics has entered the medical field).
+
+### The Partitioning Principle
+This concept leads us to one of the holy grails of data engineering: **partitioning**.
+
+When we deal with massive datasets—terabytes of logs, years of transaction history—we can't keep it all in one giant bag. We have to chop it up. We might slice the data by date (e.g., `January_Data`, `February_Data`).
+
+For this to work, those slices must be disjoint sets.
+
+1. Every row belongs to exactly one slice.
+2. No row appears in two slices.
+
+If your "January" bucket contains a record dated "Feb 1st," you have violated the disjoint property. You have duplicated data. You have created a bag where you promised a set.
+
+!!! danger "The Silent Duplication"
+
+    One of the most common bugs in data engineering happens when we assume sets are disjoint, but they aren't.
+
+    If you `UNION ALL` (stack) two tables together, assuming they contain unique records, but there is a tiny 1% overlap, you have just silently corrupted your data counts. Always verify disjointness before you stack!
+
+### Disjoint vs. Distinct
+Do not confuse **disjoint** and **distinct**.
+
+- **Distinct** refers to elements *inside* a single set (uniqueness).
+- **Disjoint** refers to the relationship *between* two different sets (separation).
+
+A set can have distinct elements and be disjoint from another set.
+
+
 ## Quiz
 
 <quiz>
