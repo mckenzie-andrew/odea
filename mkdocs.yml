@@ -68,6 +68,7 @@ nav:
       - "8: The Cartesian Product": databases_and_sql/set_theory/8_the_cartesian_product.md
       - "9: Visualizing Data Relationships": databases_and_sql/set_theory/9_visualizing_data_relationships.md
       - "10: Ordered Tuples and Relations": databases_and_sql/set_theory/10_ordered_tuples_and_relations.md
+      - "11: Grouping and Partitions": databases_and_sql/set_theory/11_grouping_and_partitions.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
