@@ -1,6 +1,6 @@
 ## Welcome to OpenConduit
 
-**The Infrastructure for Open Data Education.**
+**The Infrastructure for Open Data Engineering Education.**
 There is a saying in our industry that a Data Engineer is just a Software Engineer who loves suffering.
 
 Looking at the landscape today—the "Modern Data Stack" with its thousands of vendor logos, the endless debates about batch versus streaming, and fragile pipelines that break at 3:00 AM because of a single malformed CSV—it is easy to see why. The ecosystem is loud, chaotic, and overwhelmingly complex.
@@ -42,3 +42,12 @@ We will use specific tools in the labs (Postgres, DuckDB, Airflow, etc.). But pl
 The tools are not the point. The tools will change. In 5 years, we might all be using something completely new. The engineering concepts—idempotency, normalization, concurrency, and observability—those remain.
 
 **Focus on the concepts**.
+
+---
+## Support the Project
+
+OpenConduit is currently an unfunded, open-source initiative. Our long-term goal is to transition into a formal non-profit organization to ensure this curriculum remains free forever.
+
+**If you find this roadmap valuable, please consider giving us a star on GitHub.** It is the primary metric we use to demonstrate the project's impact to future sponsors and legal entities.
+
+[⭐ Star the Repository on GitHub](https://github.com/OpenConduit/curriculum){target="_blank"}

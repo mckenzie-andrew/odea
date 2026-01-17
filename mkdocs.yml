@@ -109,4 +109,8 @@ plugins:
       auto_number: true
 
 copyright: >
-  Copyright &copy; 2026 OpenConduit  |  Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a>  |  Labs licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>.
+  Copyright &copy; 2026 OpenConduit  |  Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a>  |  Labs licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>
+  <br>
+  <a href="https://github.com/OpenConduit/curriculum" target="_blank">
+  <strong>Find this useful? Give us a ⭐ on GitHub.</strong>
+  </a>
