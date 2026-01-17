@@ -53,7 +53,9 @@ markdown_extensions:
       generic: true
 
 nav:
-  - Home: index.md
+  - Welcome: 
+    - "About Open Conduit": index.md
+    - "Contributing": contributing.md
   - Databases and SQL:
     - databases_and_sql/index.md
     - Set Theory:
