@@ -21,5 +21,16 @@ Theory is useless without execution. This repository works in tandem with [The B
 | Focuses on architecture and design. | Focuses on implementation and code.
 | "How does an index work?" | "Run this Docker container to optimize an index." |
 
+## License
+
+This project works under a hybrid license model:
+
+- **Course Content (Markdown/Text):** [CC-BY-NC-4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+  - You may share and adapt this work for non-commercial purposes as long as you provide attribution.
+  - You may NOT use this content for commercial purposes (selling, paid training, etc.).
+
+- **Source Code (Labs/Scripts):** [MIT License](LICENSE-CODE)
+  - You are free to use the code samples for any purpose, including commercial projects.
+
 ---
 *Maintained by the maintainers of The Open Conduit.*

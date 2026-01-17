@@ -104,3 +104,6 @@ extra_javascript:
 plugins:
   - mkdocs_quiz:
       auto_number: true
+
+copyright: >
+  Copyright &copy; 2026 Open Conduit  |  Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a>  |  Labs licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>.
