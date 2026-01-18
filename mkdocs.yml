@@ -81,6 +81,7 @@ nav:
       - "5: The Grain (Granularity)": databases_and_sql/dimensional_modeling/5_the_grain.md
       - "6: The Star Schema": databases_and_sql/dimensional_modeling/6_the_star_schema.md
       - "7: The Snowflake Schema": databases_and_sql/dimensional_modeling/7_the_snowflake_schema.md
+      - "8: The Modern Twist (One Big Table)": databases_and_sql/dimensional_modeling/8_the_modern_twist.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
