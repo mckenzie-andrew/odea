@@ -6,7 +6,7 @@ repo_name: GitHub
 theme:
   name: material
   logo: assets/open_conduit.png
-  favicon: material/database
+  favicon: assets/favicon.ico
   features:
     - navigation.tabs
     - navigation.indexes

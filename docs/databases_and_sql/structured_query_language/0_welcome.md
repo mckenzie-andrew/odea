@@ -19,4 +19,4 @@ Every numbered section wraps up with a 10-question quiz. Think of these as a san
 ### Labs
 This is where the rubber meets the road. Every section includes a lab designed to challenge you strictly on what you have learned so far. We believe in fair play; you won't find any "gotcha" questions requiring syntax we haven't covered yet.
 
-You can find the labs in the `/modules/relational_databases/structured_query_language/` folder of the [companion GitHub](https://github.com/OpenConduit/labs). These are designed to run on your local machine, free of charge, because that is where real engineering happens. The repository’s `README` will help you get your environment spun up.
+You can find the labs in the `/modules/structured_query_language/` folder of the [companion GitHub](https://github.com/OpenConduit/labs). These are designed to run on your local machine, free of charge, because that is where real engineering happens. The repository’s `README` will help you get your environment spun up.
