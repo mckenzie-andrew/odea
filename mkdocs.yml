@@ -88,6 +88,7 @@ nav:
       - "11: Keys and Surrogates": databases_and_sql/dimensional_modeling/11_keys_and_surrogates.md
       - "12: Preserving History (SCDs)": databases_and_sql/dimensional_modeling/12_preserving_history.md
       - "13: The 'Factless' Fact Table": databases_and_sql/dimensional_modeling/13_factless_fact_table.md
+      - "14: The Bridge (Many-to-Many)": databases_and_sql/dimensional_modeling/14_the_bridge.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
