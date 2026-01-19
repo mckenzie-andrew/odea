@@ -78,9 +78,9 @@ Treat "Attendance," "Clicks," "Logins," and "Assignments" as distinct events. Gi
 But what about the events that *didn't* happen? That is a much harder problem.
 
 ## 12.2 Coverage Tables
-if the factless fact table tracks "Events without numbers," the **coverage table** tracks "Non-events."
+If the factless fact table tracks "Events without numbers," the **coverage table** tracks "Non-events."
 
-This is one of the hardest questions to answer in SQL, "Which products sold zero units today?"
+This is one of the hardest questions to answer in SQL: "Which products sold zero units today?"
 
 It sounds simple. But think about the physical nature of your `fact_sales` table. It is a log of transactions.
 
@@ -93,3 +93,162 @@ If you query `SUM(sales)` for the bagel, you don't get 0. You get `NULL` (or the
 This is the **negative space problem**. To analyze what *didn't* happen, we need to first define the "Universe of What Could Have Happened."
 
 ### The "Denominator" Problem
+Let's look at the concrete Omni-Coffee crisis.
+
+The marketing director calls you, "The spicy Pumpkin Latte is failing in Miami. Sales are zero. Why do they hate it?"
+
+You check `fact_sales` Sure enough, Miami sales for that product are nonexistent. But there are two possible reasons for this:
+
+1. **Rejection**: The product was available, but customers chose not to buy it. (Demand issue).
+2. **Absence**: The store manager forgot to order the pumpkin syrup. The product was never on the menu. (Supply issue).
+
+The `fact_sales` table cannot tell the difference between "hated" and "missing." Both look like empty space.
+
+To differentiate, we need a **coverage table** (often called an inventory snapshot or product availability table). This table records the *opportunity* for a sale.
+
+**Table: `fact_daily_product_availability`**
+
+| date_key | store_key | product_key | is_on_menu | is_in_stock |
+|:---|:---|:---|:---|:---|
+| 20241031 | 05 (Miami) | 99 (Pumpkin Latte) | True | False |
+| 22041031 | 06 (Orlando) 99 (Pumpkin Latte) | True | True |
+
+Now we have our answer:
+
+- **Miami**: `is_in_stock = False`. Sales were zero because we couldn't sell it.
+- **Orlando**: `is_in_stock = True`. If sales were zero, then the customers genuinely hate it.
+
+### Designing the Coverage Table
+A coverage table is dense. Unlike a sales fact table (which is "sparse"—only recording actual events), a coverage table typically records a row for **every product** in **every store** for **every day**.
+
+If you have 1,000 stores and 5,000 products, you are generating **5 million rows a day**, even if no one buys anything.
+
+Because of this weight, we design them carefully:
+
+1. **The Grain**: Snapshot periodic (usually daily).
+2. **The measure**: Often just a boolean flag (`1` for available, `0` for unavailable) or a simple integer (`quantity_on_hand`).
+
+### The Magic of the Cross Join
+When you combine a **coverage table** with a **sales table**, you unlock the "Sell-Through Rate," one of the most powerful metrics in retail.
+
+- **Numerator (from Fact Sales)**: How many did we sell?
+- **Denominator (from Coverage)**: How many could we have sold?
+
+If you don't have a coverage table, you can sometimes simulate one using a **cross join** (Cartesian Product) in SQL to generate the "Universe of Possibility" on the fly:
+
+```sql
+-- The "Theoretical" Universe
+WITH AllPossibilities AS (
+    SELECT d.date_key, s.store_key, p.product_key
+    FROM dim_date AS d
+    CROSS JOIN dim_store  AS s
+    CROSS JOIN dim_product AS p
+    WHERE d.date_key = '20241031'
+)
+
+-- Left Join to see what actually happened
+SELECT
+    ap.store_key,
+    ap.product_key,
+    COALESCE(f.sales_amount, 0) AS actual_sales
+FROM AllPossibilities AS ap
+LEFT JOIN fact_sales AS f
+    ON ap.store_key = f.store_key
+    AND ap.product_key = f.product_key
+```
+
+This query forces the database to acknowledge the zeros. By creating the scaffolding of "All Possibilities" first, the `LEFT JOIN` exposes the holes where sales data is missing.
+
+## Quiz
+
+<quiz>
+What distinguishes a 'factless' fact table from a standard transaction fact table?
+- [ ] It is used exclusively for storage efficiency and cannot be queried.
+- [ ] It is a temporary table used during the ETL process but never stored.
+- [ ] It contains no foreign keys, only text descriptions.
+- [x] It contains only foreign keys and no numeric measure columns.
+
+</quiz>
+
+<quiz>
+If a 'factless' fact table has no numeric column to sum, how do you calculate the volume of events (e.g., total attendees)?
+- [x] You count the rows.
+- [ ] You cannot calculate volume; you can only list the participants.
+- [ ] You multiply the foreign keys together.
+- [ ] You must join it to a dimension table and sum the IDs.
+
+</quiz>
+
+<quiz>
+Why is it generally poor design to track 'Training Courses Taken' as a list inside the Employee Dimension  (e.g., `courses: 'Latte Art, Safety, Management'`)?
+- [x] It violates first normal form and makes cardinality difficult to manage.
+- [ ] Dimensions are read-only and cannot be updated with new courses.
+- [ ] Text columns take up too much storage space compared to integers.
+- [ ] It prevents the use of surrogate keys.
+
+</quiz>
+
+<quiz>
+What is the primary purpose of a 'Coverage Table'?
+- [ ] To map many-to-many relationships.
+- [ ] To list all insurance policies for employees.
+- [ ] To summarize large fact tables into smaller aggregates.
+- [x] To track the 'Negative Space' or things that didn't happen (but could have).
+
+</quiz>
+
+<quiz>
+Why can't a standard sales fact table differentiate between 'No Demand' and 'Out of Stock'?
+- [ ] Because it doesn't have a 'Store' dimension linked to it.
+- [ ] Because SQL cannot handle zero values.
+- [ ] Because NULL values in the Amount column are ambiguous.
+- [x] Because it only records events that actually occurred (sparse data).
+
+</quiz>
+
+<quiz>
+What is the 'Denominator Problem' in the context of retail analysis?
+- [ ] Managing the large size of fact tables.
+- [x] Calculating a sell-through rate requires knowing how many items *could* have been sold.
+- [ ] The challenge of summing up additive facts.
+- [ ] The difficulty in dividing by zero in SQL.
+
+</quiz>
+
+<quiz>
+A coverage table is typically 'Dense.' What does this mean?
+- [x] It contains a row for every combination of dimension (e.g., Product/Store/Day), even if nothing happened.
+- [ ] It stores data in a compressed binary format.
+- [ ] It is difficult to understand.
+- [ ] It has more columns than a standard fact table.
+
+</quiz>
+
+<quiz>
+Which SQL operation is useful for generating a 'Theoretical Universe' of possibilities if you don't have a physical coverage table?
+- [ ] `UNION ALL`
+- [ ] `INNER JOIN`
+- [x] `CROSS JOIN`
+- [ ] `GROUP BY`
+
+</quiz>
+
+<quiz>
+What is a 'Dummy Metric' in a factless fact table?
+- [ ] A placeholder for future data.
+- [x] A column (usually equal to 1) added to allow BI tools to perform a SUM operation.
+- [ ] A metric that is known to be inaccurate.
+- [ ] A column filled with random numbers for testing.
+
+</quiz>
+
+<quiz>
+The lesson of module 12 is that data engineering is not just about recording transactions but about…
+- [ ] Creating pretty charts.
+- [ ] Writing complex Python scripts.
+- [ ] Minimizing storage costs.
+- [x] Modeling reality.
+
+</quiz>
+
+<!-- mkdocs-quiz results -->
