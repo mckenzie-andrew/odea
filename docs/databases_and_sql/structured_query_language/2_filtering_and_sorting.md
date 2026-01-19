@@ -395,7 +395,7 @@ WHERE first_name ILIKE 'steve';
 ## 2.3 The VOID (`NULL`)
 In the previous sections, we treated data as concrete. A salary is a number. A name is a string. A date is a specific point in time.
 
-But what if we simply…don't know?
+But what if we simply… don't know?
 
 What if a new employee hasn't been assigned a department yet? What if a customer hasn't provided their phone number? In a spreadsheet, you might leave a cell blank. In programming, you might use `0` or `""` (empty string).
 

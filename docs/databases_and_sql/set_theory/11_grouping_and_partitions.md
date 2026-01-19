@@ -107,7 +107,7 @@ Because we grouped by `Country`, the database knows that "USA" is the label for 
 
 **The Classic Error**: But what if you try this? `SELECT Name FROM Users GROUP BY Country`
 
-Think about the set theory. The database looks at the **USA Bucket**. It asks, "Okay, I need to return the name for this bucket." It looks inside and sees…"Alice" and "Bob."
+Think about the set theory. The database looks at the **USA Bucket**. It asks, "Okay, I need to return the name for this bucket." It looks inside and sees… "Alice" and "Bob."
 
 Which one should it pick? The database is a deterministic machine. It hates guessing. It cannot represent the set `{"Alice", "Bob"}` as a single scalar string.
 

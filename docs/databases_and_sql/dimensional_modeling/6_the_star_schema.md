@@ -158,7 +158,7 @@ If the regional manager asks, "Show me sales for the East Coast," the database h
 
 > **Fact Table**: "I have a sale at Store 101. Hey `Store` table, where is 101?"
 > **Store Table**: "101 is City_ID 5. Hey `City` table, where is 5?"
-> **City_Table**: "5 is in the State_ID 9. Hey `State` table…"
+> **City_Table**: "5 is in the State_ID 9. Hey `State` table… "
 
 This is a **snowflake** chain (we will dive into it in module 7). It forces the database to juggle multiple tables, keeping them all open and coordinated. It breaks the "Hash Join" efficiency because the database can't easily cache a chain of dependencies. 
 

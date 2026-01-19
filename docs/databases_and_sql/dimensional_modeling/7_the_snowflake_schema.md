@@ -181,7 +181,7 @@ Now, imagine a business analyst opens Power BI or Tableau. They want to filter t
 2. It reads 50 million rows.
 3. It extracts the `Category` column.
 4. It performs a massive `SELECT DISTINCT Category` to find the unique values.
-5. **Result**: The analyst stares at a spinning "Loading…" wheel for 45 seconds. They get frustrated and close the tab.
+5. **Result**: The analyst stares at a spinning "Loading… " wheel for 45 seconds. They get frustrated and close the tab.
 
 **What happens in a Snowflake Schema (deep)?** We normalize `Category` out of the monster table. We create a tiny `DIM_CATEGORY` table (with maybe 100 rows) and link it to the massive product table.
 

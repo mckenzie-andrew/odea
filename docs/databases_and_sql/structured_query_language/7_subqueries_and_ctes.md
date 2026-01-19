@@ -1,4 +1,4 @@
-Take a look at the queries we've written so far in the other modules. They all share a certain…linearity. We pick a table (or join a few), we filter out the noise, maybe we group things into buckets, and finally, we order the results. It's a straight line from raw data to answer.
+Take a look at the queries we've written so far in the other modules. They all share a certain… linearity. We pick a table (or join a few), we filter out the noise, maybe we group things into buckets, and finally, we order the results. It's a straight line from raw data to answer.
 
 But life (and data), isn't always linear. Sometimes, to answer a question, you first need the answer to a *different* question.
 
@@ -354,7 +354,7 @@ Think about:
 - **Menu Categories**: "Food" contains "Fruit," which contains "Citrus," which contains "Lemon."
 - **Graph Directions**: How do I get from station A to station Z, passing through stations B, C, and D?
 
-Standard SQL struggles here. You can easily find "Who is my manager?" (one join). But "Who is my manager's manager?" requires two joins. "Who is the CEO?" requires…well, you don't know how many joins until you start climbing.
+Standard SQL struggles here. You can easily find "Who is my manager?" (one join). But "Who is my manager's manager?" requires two joins. "Who is the CEO?" requires… well, you don't know how many joins until you start climbing.
 
 To solve this, we need a query that can **repeat itself** until it finishes the job. We require **recursion**.
 

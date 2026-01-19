@@ -31,13 +31,13 @@ This is the most restrictive relationship. It is the rigorous bouncer.
 
 ![intersection](./images/intersection.svg)
 
-In a data pipeline, the Inner Join is safe but dangerous. It is safe because you never have missing values (NULLs). It is dangerous because it silently drops data. If 10% of your orders have a typo in the customer ID, an Inner Join will just…make them vanish. You won't see an error; your revenue report will just be 10% lower than reality.
+In a data pipeline, the Inner Join is safe but dangerous. It is safe because you never have missing values (NULLs). It is dangerous because it silently drops data. If 10% of your orders have a typo in the customer ID, an Inner Join will just… make them vanish. You won't see an error; your revenue report will just be 10% lower than reality.
 
 ### The Left Join (The Preserver)
 This is the bread and butter of data engineering.
 
 - **Regions**: Region 1 + Region 2.
-- **Math**: $(A - B) \cup (A \cap B)$…which simplifies to just $A$.
+- **Math**: $(A - B) \cup (A \cap B)$… which simplifies to just $A$.
 - **Logic**: "I care about Orders (Set A). I want to see *all* my orders. If an order matches a customer, show me the customer's details. If it doesn't match, keep the order anyway and just leave the customer fields blank."
 
 ![left join](./images/left_join.svg)
@@ -52,7 +52,7 @@ Since there is no data there, the database fills that space with NULLs.
 
 ### The Right Join (The Contrarian)
 - **Regions**: Region 2 + Region 3.
-- **Math**: $(B - A) \cup (A \cap B)$…which simplifies to just $B$.
+- **Math**: $(B - A) \cup (A \cap B)$… which simplifies to just $B$.
 - **Logic**: "I care about Customers (Set B). Show me **all** customers, and attach their orders if they have any."
 
 ![right join](./images/right_join.svg)

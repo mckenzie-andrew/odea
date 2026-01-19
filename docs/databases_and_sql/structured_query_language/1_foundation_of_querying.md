@@ -291,7 +291,7 @@ LIMIT 3 OFFSET 3;
 ```
 
 - `LIMIT 3`: "Give me 3 rows."
-- `OFFSET 3`: "…but skip the first 3 rows you find before you start counting."
+- `OFFSET 3`: "… but skip the first 3 rows you find before you start counting."
 
 !!! example "Analogy: The Buffet Line"
 

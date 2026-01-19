@@ -55,7 +55,7 @@ Here is what the **Omni-Coffee Date Dimension** looks like:
 
 !!! tip "The Smart Key"
 
-    Notice the `Date_key` (20260118). This is an **integer**, not a date type. In most cases, I advocate for meaningless surrogate keys (1, 2, 3, …), but the Date dimension is the one exception where a "Smart Key" is acceptable and actually preferred by many architects. An integer formatted as `YYYYMMDD` is human-readable and sorts naturally.
+    Notice the `Date_key` (20260118). This is an **integer**, not a date type. In most cases, I advocate for meaningless surrogate keys (1, 2, 3, … ), but the Date dimension is the one exception where a "Smart Key" is acceptable and actually preferred by many architects. An integer formatted as `YYYYMMDD` is human-readable and sorts naturally.
 
 ### Connecting the Wires
 Now, we modify our fact table. Instead of just a raw timestamp, we add a Foreign Key pointing to our new dimension.

@@ -41,7 +41,7 @@ $$
 A - B \ne B - A
 $$
 
-If I take "My Monthly Income" minus "My Monthly Bills," I (hopefully) have some savings left over. If I take "My Monthly Bills" minus "My Monthly Income," I have…well, debt. Very different concepts.
+If I take "My Monthly Income" minus "My Monthly Bills," I (hopefully) have some savings left over. If I take "My Monthly Bills" minus "My Monthly Income," I have… well, debt. Very different concepts.
 
 Let's look at this with raw data to see the asymmetry in action.
 
@@ -192,7 +192,7 @@ If your list of scanned tickets (Set $B$) accidentally contains a single `nULL` 
 - Does ticket #103 equal ticket #102? No.
 - Does ticket #103 equal `NULL`? **Unknown**. (Remember module 6?)
 
-Because the database cannot be *sure* that #103 isn't that mysterious `NULL` value, it panics. It often returns…nothing. Or an error. or worse, the wrong answer.
+Because the database cannot be *sure* that #103 isn't that mysterious `NULL` value, it panics. It often returns… nothing. Or an error. or worse, the wrong answer.
 
 The **Anti-Join** pattern is generally safer and, in many distributed systems (like Spark or Snowflake), much faster because it leverages the massive parallel power of the Join engine rather than checking a list row-by-row.
 

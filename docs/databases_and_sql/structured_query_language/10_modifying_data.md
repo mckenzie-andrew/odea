@@ -56,7 +56,7 @@ INSERT INTO inventory
 VALUES (2, 'Healing Potion', 50.00, 5);
 ```
 
-This works…for now. The database looks at the table definition, sees there are 4 columns defined in a specific order, and assumes your values match that exact order.
+This works… for now. The database looks at the table definition, sees there are 4 columns defined in a specific order, and assumes your values match that exact order.
 
 **Do not do this**.
 
@@ -277,7 +277,7 @@ TRUNCATE TABLE inventory;
 
 #### The Mechanism
 
-While `DELETE` goes row-by-row saying, "Delete this…okay, log it. Delete this…okay, log it," `TRUNCATE` is much more aggressive.
+While `DELETE` goes row-by-row saying, "Delete this… okay, log it. Delete this… okay, log it," `TRUNCATE` is much more aggressive.
 
 `TRUNCATE` tells the database, "I don't care what is inside this table. Deallocate the data storage pages entirely."
 

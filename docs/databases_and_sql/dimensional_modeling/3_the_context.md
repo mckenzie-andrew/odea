@@ -344,7 +344,7 @@ This is a variable depth tree. The path from the bottom to the top might be 3 st
 
     Standard dimensional modeling (Star Schemas) struggles with ragged hierarchies because we rely on a fixed number of columns.
 
-    If you try to flatten an Org Chart into `dim_employee`, you end up with columns like `manager_level_1`, `manager_level_2`, …, `manager_level_10`.
+    If you try to flatten an Org Chart into `dim_employee`, you end up with columns like `manager_level_1`, `manager_level_2`, … , `manager_level_10`.
 
     **The Solution**: For beginners, force it into a fixed structure if possible. If the depth is truly variable and complex, you may need a specialized **Bridge Table** or recursive SQL. But try to avoid this complexity in your foundational schemas.
 

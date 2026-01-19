@@ -47,7 +47,7 @@ $$
 Let's translate this hieroglyphic script:
 
 - $x \in U$: Take every element of $x$ from the Universe (the table).
-- $\mid$: "Such that…" (the condition).
+- $\mid$: "Such that… " (the condition).
 - $P(x)$: The predicate is True.
 
 If you read it out loud, it sounds like English: "Set A is the collection of all x in the Universe such that P(x) is true."
@@ -74,7 +74,7 @@ graph LR
 ### Why This Matters
 Understanding that a `WHERE` clause is a mathematical function helps you avoid the common trap of **procedural thinking**.
 
-New engineers often think, "I want the computer to loop through the table, check this variable, then if that matches, check this other variable…"
+New engineers often think, "I want the computer to loop through the table, check this variable, then if that matches, check this other variable… "
 
 No. In Set Theory (and SQL), you define the state of **Truth**. You define the shape of the filter. You do not tell the computer *how* to check it; you just define *what* must be true.
 
@@ -256,7 +256,7 @@ In SQL, we use the `NOT` operator or the inequality symbols (`1=` or `<>`).
 SELECT * FROM Users WHERE Status <> 'Banned';
 ```
 
-This query defines the "good users" not by listing every good status (Active, Pending, VIP, New), but simply by excluding the bad ones. It is efficient…usually.
+This query defines the "good users" not by listing every good status (Active, Pending, VIP, New), but simply by excluding the bad ones. It is efficient… usually.
 
 ### The Danger of the Universe
 There is a catch. When you say, "Give me everything that is NOT a Banana," you have to be cautious about what is in your universe.
@@ -308,7 +308,7 @@ You will often encounter legacy code that looks like this:
 WHERE NOT (status = 'Active' OR status = 'Pending')
 ```
 
-This forces your brain to do mental gymnastics: "Okay, it's not active…or pending…so it's closed?" Using De Morgan's Law, you can rewrite this into something readable:
+This forces your brain to do mental gymnastics: "Okay, it's not active… or pending… so it's closed?" Using De Morgan's Law, you can rewrite this into something readable:
 
 ```sql
 WHERE status != 'Active' AND status != 'Pending'

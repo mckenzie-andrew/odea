@@ -248,7 +248,7 @@ Here is the single most common mistake made by new developers and junior data en
 Let's use our physical analogies.
 
 - **Zero (0)**: You have a box, and inside that box is a piece of paper with the number "0" written on it. The box is *not* empty. It contains one thing: a number.
-- **The Empty Set ($\emptyset$)**: You have a box, and inside that box is…air. Nothing.
+- **The Empty Set ($\emptyset$)**: You have a box, and inside that box is… air. Nothing.
 
 $$
 \{0\} \ne \emptyset

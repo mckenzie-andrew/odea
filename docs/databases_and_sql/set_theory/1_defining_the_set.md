@@ -158,10 +158,10 @@ $$
 
 Let's dissect this syntax. It is the great-grandfather of the SQL `WHERE` clause.
 
-- **The Braces {}**: "The set of…"
-- **The Variable $x$**: ""all things (let's call them $x$)…"
-- **The Pipe |**: "such that…" (sometimes you see a colon here instead).
-- **The Predicate**: "…$x$ meets this specific condition."
+- **The Braces {}**: "The set of… "
+- **The Variable $x$**: ""all things (let's call them $x$)… "
+- **The Pipe |**: "such that… " (sometimes you see a colon here instead).
+- **The Predicate**: "… $x$ meets this specific condition."
 
 So, reading it aloud, "The set of all things $x$, such that $x$ is an integer divisible by 2."
 
@@ -208,7 +208,7 @@ Computers, bless their silicon hearts, are finite creatures. They really dislike
 
 In pure mathematics, you can have a set of "all integers." That's fine; mathematicians have infinite paper. In a database, however, you cannot store an infinite set. Every time you define a table or a column, you are implicitly defining a Universal Set for that data.
 
-When you create a column for `user_age`, you are effectively saying, "The Universal Set for this specific attribute is the set of all integers between 0 and…let's say 150." You are restricting the domain.
+When you create a column for `user_age`, you are effectively saying, "The Universal Set for this specific attribute is the set of all integers between 0 and… let's say 150." You are restricting the domain.
 
 If you don't restrict the domain, you get garbage. If the Universal Set for `user_age` is just "All Strings," someone is going to enter "Twenty-Five" or "Gandalf," and your downstream analytics pipelines will explode.
 
