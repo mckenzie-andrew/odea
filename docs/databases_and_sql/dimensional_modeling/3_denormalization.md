@@ -6,7 +6,7 @@ In the data engineering world, however, strict adherence to DRY is a performance
 
 We call this **denormalization**.
 
-## 2.1 Redundancy is Good (Sometimes)
+## 3.1 Redundancy is Good (Sometimes)
 Let's turn to the Omni-Coffee Shop. We need to model our product catalog. We sell various beans, pastries, and merchandise.
 
 In the application database (OLTP), the developers have normalized the catalog to perfection. They noticed that many products share the same category (e.g., "Coffee Beans") and the same supplier (e.g., "Global Beans Corp"). To save space and ensure consistency, they split these into three separate tables.
@@ -92,7 +92,7 @@ This is the trade-off. We are making **writes** (updates) harder and slower so t
 
 Since a data warehouse is a system where we write data once a night (during the batch load) but reads it thousands of times a day (analysts running queries), this is a trade we happily make. We accept the burden of a heavier update process to give our users the speed of instant answers.
 
-## 2.2 Trading Space for Time
+## 3.2 Trading Space for Time
 To truly be comfortable with denormalization, you need to shed the scarcity mindset of the 1980s.
 
 When Relational Database theory was being written, hard drive space was incredibly expensive. We're talking about thousands of dollars for a few megabytes. In that era, storing the string "Global Beans Corp" twice was a financial sin. Normalization wasn't just about data integrity; it was about survival. You normalized to save physical space on the spinning rust platter.
@@ -158,7 +158,7 @@ Think of it physically.
 
 By accepting redundancy, we are pre-packing the meal kits for our analysts. We do the hard work of combining the data once during the night (when we load the warehouse) so that they don't have to do it every single time they run a query.
 
-## 2.3 Flattening the Sets
+## 3.3 Flattening the Sets
 You just finished a module on Set Theory, so let's speak that language for a moment.
 
 In the world of pure logic, a join is essentially an operation on two sets. When you join `Orders` and `Customers`, you are looking for the intersection where the keys match, effectively calculating a subset of the Cartesian Product.

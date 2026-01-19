@@ -8,7 +8,7 @@ If you look at a raw database, these two look identical. They are both tables. T
 
 We are going to start with the storytellers.
 
-## 3.1 The "Noun" Tables
+## 4.1 The "Noun" Tables
 Imagine the manager of the 'Omni-Coffee' shop bursts into your office. They are frantic. They scream, *"we sold 500!"* and then run out.
 
 You are left staring at the wall. 500 what? 500 coffees? 500 bagels? Did we sell them today? Last year? DId we sell them here or at the branch across town? Did we sell them to regular customers or tourists?
@@ -102,7 +102,7 @@ The data point (the sale) floats somewhere in the middle, defined entirely by it
 
     If a user wants to **Sum**, **Average**, or **Count** data, that belongs in a **Fact**.
 
-## 3.2 Wide and Shallow
+## 4.2 Wide and Shallow
 If you could physically hold a database table in your hands, a dimension table and a fact table would feel entirely different.
 
 A fact table is a receipt tape. It is miles long, encompassing billions of transactions, but it is very narrow—just a few numbers and IDs.
@@ -188,7 +188,7 @@ A common anti-pattern is the **Centipede Table**. This happens when you have a d
 - **Good Width**: Attributes that describe the specific row perfectly (e.g., A specific bag of coffee has one flavor profile, one roast type, one vendor).
 - **Bad Width**: Trying to stuff a list into a row. (e.g., a customer has many phone numbers. Do not create columns `phone_1`, `phone_2`, `phone_3`… that looks like a centipede).
 
-## 3.3 Descriptive Attributes
+## 4.3 Descriptive Attributes
 If the dimension table is the "User interface" of your data warehouse, then **descriptive attributes** are the buttons and knobs.
 
 When a business analyst opens a tool like PowerBI or Tableau, they are presented with a list of columns. They drag these columns into the "Filters" box (the `WHERE` clause) or the "Row/Columns" box (the `GROUP BY` clause).
@@ -256,7 +256,7 @@ If you force every analyst to write that logic, half of them will get it wrong.
 
 Notice I didn't use `True/False` booleans. I used `Yes/No` or descriptive text. Why? Because some BI tools struggle with raw booleans, often displaying them as `0` or `1`. `Yes` is universally understood.
 
-## 3.4 Hierarchies
+## 4.4 Hierarchies
 If descriptive attributes are the "what," then hierarchies are the "zoom."
 
 Data analysis is rarely static. It is a journey of navigation. A regional manager starts looking at the **Country** level. They see a dip in sales. They zoom in to the **Region**. They see the "Midwest" is underperforming. They zoom in to the **District**, then the **City**, and finally the specific **Store**.

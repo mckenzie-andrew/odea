@@ -2,7 +2,7 @@ We have spent the last few modules making bricks. We have defined our dimensions
 
 Now, we stop manufacturing bricks and start laying them. We are going to build the most enduring, popular, and effective structure in the history of data analytics.
 
-## 6.1 The Center of the Universe
+## 7.1 The Center of the Universe
 If you walk into the office of a software engineer building the **Omni-Coffee** mobile app, and you look at their database diagram (the OLTP schema), it will look like a spiderweb. Tables are linked to tables, which are linked to other tables, which loop back to the first table. It is a complex mesh designed to keep data consistent.
 
 But if you show the spiderweb to a business analyst and say, "Go ahead, find the sales trends," they will cry.
@@ -114,7 +114,7 @@ erDiagram
 
 We have established our center. But how exactly do we connect the center to the edge? How do we build the "spokes"? That is the job of the **join**.
 
-## 6.2 One Join Away
+## 7.2 One Join Away
 In the world of databases, distance is measured in "joins." Every time you have to connect Table A to Table B, you pay a tax. You pay in **compute** (CPU cycles) and **latency** (time).
 
 The genius of the Star Schema is that it guarantees the lowest possible tax rate for any question. No matter what context you need—whether it's the flavor of the bagel or the zip code of the store—you are always exactly **one join away**.
@@ -183,7 +183,7 @@ Boom. One question. One answer. All the context.
 
     Why? So that when the query runs, we don't have to join three extra tables (Time). Storage is cheap; patience is expensive. We always buy time.
 
-## 6.3 Visualizing the Star
+## 7.3 Visualizing the Star
 We have discussed gravity, orbits, and join efficiency. But the ultimate test of a data model isn't how fast it runs; it's how easily it can be understood by someone who has had only one cup of coffee.
 
 The Star Schema is named "Star" for a reason. When you draw it on a whiteboard, it creates a distinct, radial shape. This shape is the "User Interface" for your data warehouse.

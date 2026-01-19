@@ -6,7 +6,7 @@ But in the last decade, companies like Google (BigQuery), Snowflake, and Amazon 
 
 This shift is not just an implementation detail. It is an earthquake that shakes the very foundation of dimensional modeling.
 
-## 6.1 Columnar Storage
+## 9.1 Columnar Storage
 Traditional databases store data the way you write it: **row by row**.
 
 Imagine writing data on a hard drive is like writing in a notebook. When Alice buys a latte, the database writes: `[2024-01-16, Store_101, Latte, Alice, 5.00]`.
@@ -39,7 +39,7 @@ Why are we maintaining a `Fact_Sales` and a `Dim_Store` and a `Dim_Product`? Why
 
 This is the birth of **OBT (One Big Table)**.
 
-## 8.2 OBT (One BIg Table): Full Denormalizing the Star
+## 9.2 OBT (One BIg Table): Full Denormalizing the Star
 If the Star Schema is a "Solar System," then **OBT (One Big Table)** is a "Supernova." It is what happens when you take the entire universe—the sun, the planets, the moons—and smash them together into a single, massive, flat series of data.
 
 It is the ultimate act of denormalization.
@@ -107,7 +107,7 @@ So why doesn't everyone use OBT for everything?
 
 OBT is fantastic for **immutable history** (things that don't change). It is painful for data that shifts frequently.
 
-## 8.3 Star vs. OBT: The Decision Framework
+## 9.3 Star vs. OBT: The Decision Framework
 We have reached the end of the architectural section of this course. You now have two powerful blueprints in your hands:
 
 1. **The Star Schema**: The disciplined, organized, "One Join Away" classic.

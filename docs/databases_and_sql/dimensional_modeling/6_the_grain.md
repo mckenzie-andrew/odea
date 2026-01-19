@@ -2,7 +2,7 @@ In the last module, we separated our world into **dimensions** (the context) and
 
 It is a decision so fundamental that if you get it wrong, no amount of SQL wizardry or cloud compute power can save you. It is the decision of **grain**.
 
-## 5.1 Defining the Atomic Level
+## 6.1 Defining the Atomic Level
 The grain is the "resolution" of your data. It answers the simple, deceptively dangerous question:
 
 > "What precisely does a single row in this table represent?"
@@ -94,7 +94,7 @@ Today, storage is cheap. Cloud data warehouses like BigQuery and Snowflake eat b
 
 In the "blueprint," we prioritize **flexibility**. We build our foundation on the atomic grain. If—and only if—the queries become too slow, we build smaller, aggregated tables on top of the atomic ones. But we never throw away the atoms.
 
-## 5.2 The Cardinality Trap
+## 6.2 The Cardinality Trap
 In Set Theory, we defined **Cardinality** simply as "the number of elements in a set." If a set has three elements—`{Espresso, Latte, Cappuccino}`—it's cardinality is 3.
 
 In data engineering, we slightly tweak this definition. When we talk about the cardinality of a **column**, we are talking about the **uniqueness** of the data inside it.
@@ -159,7 +159,7 @@ When you are modeling, look at your columns and ask, "How fast does this set gro
 
 If you try to force an unbounded set into a standard dimension structure, you fall into the cardinality trap. You create a dimension that grows faster than your maintenance scripts can handle.
 
-## 5.3 Mixed Grains
+## 6.3 Mixed Grains
 We have defined our atomic level, and we have assessed the size of our sets. Now, we arrive at the most common way to completely wreck a data model.
 
 In the industry, we call this the **mixed grain** problem. It is the "deadly sin" of dimensional modeling. It occurs when you try to force two numbers with different physical realities into the same table.

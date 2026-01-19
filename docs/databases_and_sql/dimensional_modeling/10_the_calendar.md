@@ -6,7 +6,7 @@ Every single dashboard, report, and executive summary is filtered by time. "How 
 
 In the previous modules, we talked about dimensions as the "nouns" of our world (Customers, Products, Stores). Time is unique. It is the canvas upon which all other events are painted.
 
-## 9.1 The Most Important Dimension
+## 10.1 The Most Important Dimension
 Novice data engineers often look at the raw transaction data coming from the Point of Sale system, see a timestamp column, and think, "Great, I have a date. I'm done."
 
 **You are not done**. In fact, relying on raw timestamps is one of the most common mistakes in warehouse design. To build a robust warehouse, you need to treat time not as a value but as a distinct **dimension table**.
@@ -116,7 +116,7 @@ In Set Theory, we learned that a Set is a collection of distinct objects. The `D
 
 By materializing time into a physical table, we transform a complex calculation problem into a simple storage solution. We make our queries readable, our definitions consistent, and our database fast.
 
-## 9.2 Enriching Time
+## 10.2 Enriching Time
 We have established that a date is not just a timestamp—it is an object. In Set Theory terms, a date is an element in a set. But in dimensional modeling, an element is useless if we don't know anything about it.
 
 If your `Dim_Date` table only contains a list of dates like `2026-01-01`, `2026-01-2`, and so on, you have essentially built a costly calendar that tells you nothing you couldn't find on your phone.

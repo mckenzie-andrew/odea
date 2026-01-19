@@ -8,7 +8,7 @@ If you walk  over to the application developers—the folks building the point o
 
 In the world of data engineering, we call this a **natural key**.
 
-## 10.1 Natural Keys
+## 11.1 Natural Keys
 A **natural key** is an identifier that exists in the real world or in the business system *before* the data ever reaches our warehouse. It is "natural" to the domain.
 
 Examples of natural keys include:
@@ -71,7 +71,7 @@ We need a key that we control. A key that is insulated from the chaos of the out
 
 We need a **surrogate**.
 
-## 10.2 Surrogate Keys
+## 11.2 Surrogate Keys
 If the natural key is the chaos of the real world, the **surrogate key** is the order of the warehouse.
 
 In the previous section, we established that relying on `loyalty_card_code` or `email` is dangerous because we don't own those values. The Application team owns them.
@@ -161,7 +161,7 @@ flowchart LR
 
     **Never** let a natural key leak into a fact table as a foreign key. The fact table should only speak the language of surrogate keys.
 
-## 10.3 Why We Decouple
+## 11.3 Why We Decouple
 In software engineering, 'coupling' is a dirty word. If changing a line of code in Module A forces you to rewrite Module B, those modules are *tightly coupled*. It makes your systems brittle and developers miserable.
 
 In data engineering, if changing the operational database (the App) breaks the analytical database (the warehouse), you have the same problem.

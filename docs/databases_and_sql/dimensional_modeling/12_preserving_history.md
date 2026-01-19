@@ -4,7 +4,7 @@ But the universe, unfortunately for us engineers, refuses to sit still.
 
 People get married and change their names. Products get rebranded. Cities get annexed. And, most critically for the Omni-Coffee bottom line, customers move to new neighborhoods.
 
-## 11.1 The Mutability Problem
+## 12.1 The Mutability Problem
 In the world of application development (OLTP), handling this is easy: you just change the data. In the world of data warehousing (OLAP), however, "just changing the data" can unknowingly rewrite history, turning your pristine financial reports into a pack of lies.
 
 This is the **mutability problem**, and it is one of the trickiest dragons you will have to slay.
@@ -67,7 +67,7 @@ You might be thinking, "Okay, obviously we shouldn't overwrite it. Why don't we 
 
 That is a valid instinct! If we stored "Seattle" on the receipt (the fact row), we would preserve history.
 
-However, consider the trade-offs we discussed in module 2.
+However, consider the trade-offs we discussed in module 3.
 
 1. **Storage**: Storing `customer_name`, `customer_city`, `customer_state` and `customer_segment` on every single coffee sale (millions of rows) is massive data redundancy.
 2. **Maintenance**: What if we realize we spelled "Seattle" wrong? We'd have to update millions of fact rows.
@@ -140,7 +140,7 @@ We can safely overwrite "Unknown" with "Instagram." If we look back at his Janua
 
     **Never** use SCD Type 1 for attributes that are geographically or structurally significant (City, State, Sales Territory, Department). If an attribute is used to group numbers on a dashboard, changing it via Type 1 will cause those numbers to "jump" from one group to another retroactively.
 
-## 11.3 SCD Type 2 (Add Row)
+## 12.3 SCD Type 2 (Add Row)
 If Type 1 is the "Amnesiac," **SCD Type 2** is the "Historian." It is the gold standard for dimensional modeling because it allows us to answer the question that Type 1 cannot: *"What did the world look like back then?"*
 
 ### The Mechanism
@@ -224,7 +224,7 @@ SCD Type 2 is powerful, but it is not free.
 
     In most data warehouses, **SCD Type 2 is the default** for any important entity (Customers, Employees, Products). The storage cost is usually trivial compared to the value of accurate historical reporting.
 
-## 11.4 SCD Type 3 and Beyond
+## 12.4 SCD Type 3 and Beyond
 If Type 1 is "Amnesia" and Type 2 is "Total Recall," **SCD Type 3** is "Short-Term Memory."
 
 While Type 2 is the standard for general history, it has a flaw: it makes side-by-side comparisons difficult. If you want to ask, "Show me Bob's sales this year grouped by his **current** territory versus his **previous** territory," Type 2 makes you work for it. You have to join facts to different versions of the dimensions row and perform complex window functions.

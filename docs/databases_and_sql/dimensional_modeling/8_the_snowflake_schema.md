@@ -4,7 +4,7 @@ But there is another school of thought. There are engineers who look at `DIM_STO
 
 When you listen to these engineers, you stop building stars and start building **Snowflakes**.
 
-## 7.1 Normalizing Dimensions
+## 8.1 Normalizing Dimensions
 A **Snowflake schema** is just a Star Schema where the dimensions have been **normalized**.
 
 Instead of one big, flat table for `DIM_STORE`, you break it down into a hierarchy of smaller tables, linked together by foreign keys. The diagram stops looking like a simple starburst and starts looking like a fractured crystal (or a Snowflake).
@@ -94,7 +94,7 @@ You have just paid for **four joins** to answer a simple question.
 
     **Flat-dimensions are user-friendly. Snowflake dimensions are user-hostile.**
 
-## 7.2 The Trade-Off
+## 8.2 The Trade-Off
 In engineering, there are no solutions, only trade-offs. When you choose between a Star Schema (flat) and a Snowflake schema (deep), you are negotiating a deal with the database gods.
 
 You are trading storage space for complexity.
@@ -159,7 +159,7 @@ If `DIM_PRODUCT` has 500 rows, flatten it. If `DIM_CUSTOMERS` has 100 million ro
 
 This brings us to the only section of this module where I will actually encourage you to use it.
 
-## 7.3 When to Snowflake: Justifiable Use Cases
+## 8.3 When to Snowflake: Justifiable Use Cases
 I have spent the last two sections telling you that Snowflake is bad, old-fashioned, and annoying. You might be ready to vow never to create a normalized dimension again.
 
 Not so fast.

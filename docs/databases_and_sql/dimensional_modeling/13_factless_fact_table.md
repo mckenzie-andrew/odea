@@ -4,7 +4,7 @@ I told you that dimensions are "Nouns" (text) and Facts are "verbs" (numbers). I
 
 But what happens when the business process is an event that has no magnitude?
 
-## 12.1 Tracking Events without Numbers
+## 13.1 Tracking Events without Numbers
 
 What if the CEO asks, "Who attended the 'Advanced Latte Art' training session yesterday?"
 
@@ -79,7 +79,7 @@ Treat "Attendance," "Clicks," "Logins," and "Assignments" as distinct events. Gi
 
 But what about the events that *didn't* happen? That is a much harder problem.
 
-## 12.2 Coverage Tables
+## 13.2 Coverage Tables
 If the factless fact table tracks "Events without numbers," the **coverage table** tracks "Non-events."
 
 This is one of the hardest questions to answer in SQL: "Which products sold zero units today?"

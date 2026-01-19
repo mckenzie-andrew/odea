@@ -76,17 +76,18 @@ nav:
     - Data Modeling:
       - "Welcome": databases_and_sql/dimensional_modeling/0_welcome.md
       - "1: The Two Worlds": databases_and_sql/dimensional_modeling/1_the_two_worlds.md
-      - "2: Denormalization": databases_and_sql/dimensional_modeling/2_denormalization.md
-      - "3: The Context (Dimensions)": databases_and_sql/dimensional_modeling/3_the_context.md
-      - "4: The Measurement (Facts)": databases_and_sql/dimensional_modeling/4_the_measurement.md
-      - "5: The Grain (Granularity)": databases_and_sql/dimensional_modeling/5_the_grain.md
-      - "6: The Star Schema": databases_and_sql/dimensional_modeling/6_the_star_schema.md
-      - "7: The Snowflake Schema": databases_and_sql/dimensional_modeling/7_the_snowflake_schema.md
-      - "8: The Modern Twist (One Big Table)": databases_and_sql/dimensional_modeling/8_the_modern_twist.md
-      - "9: The Calendar (Date Dimensions)": databases_and_sql/dimensional_modeling/9_the_calendar.md
-      - "10: Keys and Surrogates": databases_and_sql/dimensional_modeling/10_keys_and_surrogates.md
-      - "11: Preserving History (SCDs)": databases_and_sql/dimensional_modeling/11_preserving_history.md
-      - "12: The 'Factless' Fact Table": databases_and_sql/dimensional_modeling/12_factless_fact_table.md
+      - "2: The Pipeline (Medallion Architecture)": databases_and_sql/dimensional_modeling/2_the_pipeline.md
+      - "3: Denormalization": databases_and_sql/dimensional_modeling/3_denormalization.md
+      - "4: The Context (Dimensions)": databases_and_sql/dimensional_modeling/4_the_context.md
+      - "5: The Measurement (Facts)": databases_and_sql/dimensional_modeling/5_the_measurement.md
+      - "6: The Grain (Granularity)": databases_and_sql/dimensional_modeling/6_the_grain.md
+      - "7: The Star Schema": databases_and_sql/dimensional_modeling/7_the_star_schema.md
+      - "8: The Snowflake Schema": databases_and_sql/dimensional_modeling/8_the_snowflake_schema.md
+      - "9: The Modern Twist (One Big Table)": databases_and_sql/dimensional_modeling/9_the_modern_twist.md
+      - "10: The Calendar (Date Dimensions)": databases_and_sql/dimensional_modeling/10_the_calendar.md
+      - "11: Keys and Surrogates": databases_and_sql/dimensional_modeling/11_keys_and_surrogates.md
+      - "12: Preserving History (SCDs)": databases_and_sql/dimensional_modeling/12_preserving_history.md
+      - "13: The 'Factless' Fact Table": databases_and_sql/dimensional_modeling/13_factless_fact_table.md
     - Structured Query Language:
       - "Welcome": databases_and_sql/structured_query_language/0_welcome.md
       - "1: The Foundation of Querying": databases_and_sql/structured_query_language/1_foundation_of_querying.md
