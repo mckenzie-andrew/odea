@@ -1,3 +1,7 @@
+!!! warning "Not Complete"
+
+    This glossary is constantly growing as new content is added. 
+
 ## \#
 #### 1NF (First Normal Form)
 The foundational state of a relational database table where data is organized such that:
