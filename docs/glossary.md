@@ -57,7 +57,7 @@ A row-oriented, binary data serialization system. It relies on a schema (defined
 Avro is the standard format for the Bronze Layer (Ingestion) and Streaming Pipelines (Kafka).
 - **Why**? Because it is row-oriented, it is excellent for writing new records quickly (append-heavy workloads). Its robust Schema Evolution support means that if an upstream application changes a field, the consumer pipeline doesn't break; it can handle added/removed fields gracefully using a Schema Registry.
 
-### Apache ORC (Optimized Row Columnar)
+#### Apache ORC (Optimized Row Columnar)
 A columnar storage format similar to Parquet but originally designed specifically to optimize performance for Apache Hive and MapReduce workloads.
 
 While Parquet is the general standard for Spark/Databricks, ORC is often preferred in ecosystems heavily reliant on Hive or Presto/Trino. It offers slightly better compression and supports ACID transactions (updates/deletes) more natively within the Hive ecosystem than Parquet.
@@ -129,7 +129,7 @@ A sequence of bits (0s and 1s) treated as a single data unit.
 #### Bitwise Operators
 Operators that perform logic on data at the individual bit level rather than the value level.  Common operators include `AND` (`&`), `OR` (`|`), `XOR` (`^`), `NOT` (`~`), and Bit Shifts (`<<`, `>>`).
 
-### Blocking
+#### Blocking
 A situation where one transaction holds a lock on a specific resource (row, page, or table), forcing other conflicting transactions to wait (block) until the lock is released.
 
 #### Boolean Algebra
@@ -192,7 +192,7 @@ Common data engineering smells include:
 - **Hardcoded Configuration**: Credentials or file paths embedded directly in Python scripts instead of environment variables.
 - `SELECT *`: Using `SELECT *` in production pipelines, which breaks downstream dependencies if the source schema changes.
 
-### Compaction
+#### Compaction
 The process of reclaiming disk space and optimizing storage by merging multiple small data files into fewer larger ones, or by rewriting files to remove deleted data.
 
 #### Commutative
@@ -640,7 +640,7 @@ Sorting data based on a defined position (index) rather than the semantic value 
 Essential for sorting categorical data that has a logical order but no alphabetical order (e.g., "Low", "Medium", "High"). If you sort these alphabetically, you get "High, Low Medium" (incorrect). Engineers must create an "ordinal" column (1, 2, 3) to sort them correctly.
 
 ## P
-### Page Density
+#### Page Density
 A setting that determines how full a database page can be filled with ata (e.g., 80% full). The remaining space is left empty to accommodate future updates without causing **Page Splits**.
 
 #### Page Split
