@@ -322,4 +322,4 @@ What is a major downside or 'cost' of running compaction?
 <!-- mkdocs-quiz results -->
 
 ## Lab
-Please complete module 6's lab in the companion GitHub repository.
+Please complete module 10's lab in the companion GitHub repository.

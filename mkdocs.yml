@@ -116,6 +116,8 @@ nav:
       - "8: Transactions": databases_and_sql/database_internals_and_optimizations/8_transactions.md
       - "9: Locks and Blocking": databases_and_sql/database_internals_and_optimizations/9_locks_and_blocking.md
       - "10: Database Hygiene": databases_and_sql/database_internals_and_optimizations/10_database_hygiene.md
+      - "11: Distributing the Load": databases_and_sql/database_internals_and_optimizations/11_distributing_the_load.md
+      - "12: Decoupling Compute and Storage": databases_and_sql/database_internals_and_optimizations/12_decoupling_compute_and_storage.md
   - Glossary: glossary.md
 
 
