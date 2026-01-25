@@ -130,6 +130,9 @@ A sequence of bits (0s and 1s) treated as a single data unit.
 #### Bitwise Operators
 Operators that perform logic on data at the individual bit level rather than the value level.  Common operators include `AND` (`&`), `OR` (`|`), `XOR` (`^`), `NOT` (`~`), and Bit Shifts (`<<`, `>>`).
 
+### Blocking
+A situation where one transaction holds a lock on a specific resource (row, page, or table), forcing other conflicting transactions to wait (block) until the lock is released.
+
 #### Boolean Algebra
 The branch of algebra in which the values of the variables are the truth values **true** and **false**, usually denoted 1 and 0.
 
@@ -190,6 +193,9 @@ Common data engineering smells include:
 - **Hardcoded Configuration**: Credentials or file paths embedded directly in Python scripts instead of environment variables.
 - `SELECT *`: Using `SELECT *` in production pipelines, which breaks downstream dependencies if the source schema changes.
 
+### Compaction
+The process of reclaiming disk space and optimizing storage by merging multiple small data files into fewer larger ones, or by rewriting files to remove deleted data.
+
 #### Commutative
 A property of a binary operation where the order of the operands does not change the result. ($A + B = B + A$).
 Inner Joins are Commutative: Table A JOIN Table B is semantically the same as Table B JOIN Table A (though the optimizer might pick different execution plans).
@@ -220,6 +226,9 @@ This is the "glue" of a data warehouse. If the marketing team tracks Customers b
 A logical operator (AND) that results in True only if all operands are true.
 
 Used heavily in complex filtering logics. When defining data quality rules, conjunctions are used to group requirements (e.g., "The row is valid IF `email is not null AND age > 18`").
+
+#### Consistency
+One of the ACID properties. It ensures that a transaction take the database from one valid state to another valid state, maintaining all defined rules, constraints (foreign keys), and triggers.
 
 #### Cost-Based Optimizer (CBO)
 The component of a database engine that generates multiple execution plans for a query, assigns a "cost" (estimate of I/O and CPU usage) to each, and selects the cheapest plan. It relies on **Statistics** (like histograms) to make these decisions.
@@ -282,6 +291,9 @@ In the context of data modeling, a dimension is a structure that categorizes fac
 
 Dimensions provide the entry point for slicing and dicing data. When an engineer builds an OLAP cube or a dataset, "Dimensions" are the columns users are allowed to group by.
 
+#### Dirty Reads
+A concurrency anomaly where a transaction reads data that has been written by another transaction but **not yet committed**. If the other transaction rolls back, the first transaction has processed invalid data.
+
 #### Disjunction
 A logical operator (OR) that results in true if at least one of the operands is true.
 
@@ -296,6 +308,9 @@ This tests the quality of the data architecture. If a user wants to compare Inve
 Moving from a high-level summary of data to a more detailed, granular view within the same hierarchy.
 
 Drill-down capability relies on the data being stored at the lowest necessary grain. If an engineer aggregates data too early in the pipeline (e.g., summing sales by day before loading the warehouse), the user cannot drill down to see the specific hourly transactions.
+
+#### Durability
+One of the ACID properties. It guarantees that once a transaction is committed, it will remain committed even in the event of a system failure (e.g., power outage or crash).
 
 ## E
 #### Elements
@@ -317,6 +332,9 @@ This is the "happy path" for distributed databases. Hash joins (the most efficie
 A set operator (standard SQL) that returns distinct rows from the first query that are not present in the second query. (Also known as `MINUS` in Oracle).
 
 A cleaner, more reliable alternative to the Anti-Join. It is frequently used in regression testing: `(SELECT * FROM new_table) EXCEPT (SELECT * FROM Old_Table)` allows an engineer to instantly see if a pipeline change introduced any new/unexpected rows.
+
+#### Exclusive Locks
+A lock that prevents any other transaction from acquiring *any* kind of lock (Shared or Exclusive) on the same resource. Only the locker holder can read or modify the data.
 
 #### Explicit Casting
 The intentional conversion of a value from one data type to another using specific syntax (like `CAST(x AS INT)` or `x::INT`).
@@ -395,6 +413,9 @@ Crucial for performance in tools like Spark or Power BI.
 A column (or group of columns) in one table that provides a link between data in two tables. It references the Primary Key of another table.
 
 In modern data warehouses, Foreign Key constraints are often unenforced. You can define them for documentation/ERD tools, but the database will not stop you from inserting a row with an invalid foreign key. It is the data engineer's responsibility to check referential integrity during the ETL pipeline.
+
+#### Free Space Map (FSM)
+A data structure used by database engines (specifically Postgres) to track available free space within pages (blocks) on the disk.
 
 #### Full Outer Join
 A join that returns all rows from both the left and right tables. Where a match is found, columns are populated; where no match is found, NULLs are generated for the missing side.
@@ -507,6 +528,9 @@ The natural ordering of elements.
 
 Relational tables have **NO** intrinsic order. A generic `SELECT *` returns rows in an unpredictable order unless ORDER BY is explicitly used. However, Log Files and Streams DO have an intrinsic order (time of arrival). Preserving this order is critical when replaying events to rebuild a database state.
 
+#### Isolation
+One of the ACID properties. It determines how/if the changes made by one transaction are visible to other concurrent transactions.
+
 ## J
 
 ## K
@@ -536,6 +560,15 @@ In a general context, a decisive test of a hypothesis. In data engineering, it o
 
 "The One-Row-Per-User Litmus Test": Before joining a Users table, an engineer runs `SELECT user_id, COUNT(*) FROM Users GROUP BY user_id HAVING COUNT(*) > 1`. If this returns any rows, the hypothesis that "User ID is unique" is false, and the join will cause Fan-Out Duplication.
 
+#### Lock Granularity
+The scope or size of the object being locked.
+
+- **Coarse-Grained**: Locking the entire **Table** (High concurrency contention, low memory overhead).
+- **Fine-Grained**: Locking a specific **Row** (Low contention, high memory overhead to manage millions of blocks).
+
+#### Lock Manager
+The internal subsystem of a database engine responsible for tracking which transactions hold which locks, detecting deadlocks, and granting/denying lock requests.
+
 #### Locking
 A mechanism to control access to data items to ensure integrity during concurrent transactions.
 - **Shared Lock (Read Lock)**: Allows others to read but not write.
@@ -555,6 +588,12 @@ A data design pattern (popularized by Databricks) that organizes data quality in
 - **Gold**: Business-level aggregates and Star Schemas (ready for dashboards).
 
 This architecture decouples data ingestion from data serving. If a bug is found in the business logic (Gold), you can simply re-run the transformation from the Silver layer without having to re-ingest the raw data from the source.
+
+#### Multi-Version Concurrency Control (MVCC)
+A widely used concurrency control method (used by Postgres, Oracle, Snowflake) where the database maintains multiple versions of a row simultaneously.
+
+- **Readers** see a "snapshot" of the data as it existed when their query started.
+- **Writers** create a *new* version of the row rather than overwriting the old one.
 
 #### Multiplicity
 A modeling term describing the cardinality of a relationship between sets or tables. Common types are One-to-One (1:1), One-to-Many (1:N), and Many-to-Many (M:N).
@@ -602,6 +641,9 @@ Sorting data based on a defined position (index) rather than the semantic value 
 Essential for sorting categorical data that has a logical order but no alphabetical order (e.g., "Low", "Medium", "High"). If you sort these alphabetically, you get "High, Low Medium" (incorrect). Engineers must create an "ordinal" column (1, 2, 3) to sort them correctly.
 
 ## P
+### Page Density
+A setting that determines how full a database page can be filled with ata (e.g., 80% full). The remaining space is left empty to accommodate future updates without causing **Page Splits**.
+
 #### Page Split
 An operation that occurs in a B-Tree index when a new row is inserted into a full index page. The database must create a new page and move half the rows to it.
 
@@ -633,6 +675,9 @@ If you query `SELECT * FROM Logs WHERE date = '2025-01-01'`, and the table is pa
 The database strategy of dividing a large table into smaller, more manageable pieces, usually based on a specific column (like Date or Region).
 
 Partitioning is mandatory for Big Data. You do not store 10 years of data in one massive pile. You store it in folders /year=2024/month=01. This allows query engines to read only the relevant folders.
+
+#### Phantom Rows
+A concurrency anomaly where a transaction executes a query returning a set of rows satisfying a condition, but a second execution of the same query reveals a row that "appeared" (was inserted by another transaction) in the meantime.
 
 #### Power Set
 The set of all possible subsets of a set, including the empty set and the set itself. If a set has $n$ elements, the power set has $2^n$ elements.
@@ -692,6 +737,18 @@ A dimension attribute that changes frequently (e.g., a customer's Account Balanc
 
 To handle this, data engineers use a Multi-Dimension (or Junk Dimension) technique. The rapidly changing attributes are split off into a separate table. The main dimension table then links to this mini-dimension via a foreign key. This allows the attributes to change without rewriting the massive main dimension table.
 
+#### Read Committed
+The default isolation level in most databases.
+
+- **Guarantee**: A transaction only sees data that was committed *before* the query began. It prevents **Dirty Reads**.
+- **Allowable**: It allows **Non-Repeatable Reads** (if you query the row again, it might have changed).
+
+#### Read Uncommitted
+The lowest isolation level.
+
+- **Allowable**: Transactions can read uncommitted changes from others (**Dirty reads**).
+- Rarely used, except for rough debugging or "approximate row counts" on massive tables where locking overhead is unacceptable.
+
 #### Real-Time Processing
 The processing of data immediately as it enters the system, with latency typically measured in milliseconds or seconds.
 
@@ -721,6 +778,12 @@ In Set Theory, the relative complement of Set B in Set A (written as $A - B$) is
 This is the theoretical basis for the EXCEPT (or MINUS) SQL operator. It is used to find "new" data.
 
 - Today's Data except Yesterdays Data = New Records.
+
+#### Repeatable Read
+An isolation level higher than Read Committed.
+
+- **Guarantee**: If you read a row once, it is guaranteed to remain the same if you read it again within the same transaction. It prevents **Dirty Reads** and **Non-Repeatable Reads**.
+- **Mechanism**: Often achieved by holding Shared Locks on all read rows until the end of the transaction.
 
 #### Right Join
 A join operation that returns all records from the right table (the second table listed) and matched records from the left table. If no match is found, the left side contains `NULL`.
@@ -798,8 +861,17 @@ Reading or writing data in a contiguous block on the disk. The drive head moves 
 #### Sequential Scan
 See Full Table Scan. (Note: "Seq Scan" is the specific terminology used by PostgreSQL to denote a full table scan).
 
+#### Serializable (Isolation Level)
+The highest (strictest) isolation level.
+
+- **Guarantee**: It emulates serial execution, as if transactions were run one after another, sequentially. It prevents **all** anomalies (Dirty Reads, Non-Repeatable Reads, and Phantoms).
+- **Cost**: High performance penalty due to aggressive locking or frequent transaction aborts.
+
 #### Set
 A collection of distinct objects, considered as an object in its own right. Note that in SQL, a standard query result is technically a "Multiset" (or Bag) because it allows duplicates unless `DISTINCT` is explicitly used.
+
+#### Shared Locks
+A lock that allows multiple transactions to read (share) a resource simultaneously, but prevents any transaction from *modifying* (writing) it.
 
 #### SIMD (Single Instruction, Multiple Data)
 A parallel computing architecture where a single CPU instruction operates on multiple data points simultaneously.
@@ -910,6 +982,9 @@ This explains why `SELECT *` is an anti-pattern in data warehousing.
 An ordered, immutable list of elements. In Relational Algebra, a "tuple" is the formal term for a row.
 
 ## U
+#### Undo Logs
+A recording of the values of data *before* they were modified by a transaction.
+
 #### Union
 A set operator that combines the result sets of two or more queries into a single result set. Importantly, `UNION` performs a deduplication step, removing duplicate rows.
 
@@ -935,6 +1010,9 @@ A dangerous trap in Automated Testing.
 - **Scenario**: You write a test `assert all(row.amount > 0 for row in data)`.
 - **Failure**: If the data list is empty (due to an upstream pipeline failure), the loop never runs, and the test returns True (Pass). You think your data is valid, but you actually have no data. Always check `count > 0` before checking value logic.
 
+#### Vacuum
+A maintenance process specific to **MVCC** databases (like Postgres). Because MVCC marks old rows as "dead" rather than deleting them immediately, "dead tuples" accumulate ("bloat"). Vacuuming scans tables to mark (or delete) these dead rows and reclaim space.
+
 #### Vectorizing
 The process of rewriting a loop-based scalar operation to apply to an entire array (vector) of data at once.
 
@@ -948,6 +1026,12 @@ The primary optimization strategy for Pandas or Numpy.
 Stream Processing Context: The strategy of dividing an infinite stream of data into finite chunks (buckets) for processing (e.g., "Tumbling Window" of 5 minutes).
 
 SQL Context: The ability to perform calculations across a set of table rows that are related to the current row (using `OVER()`).
+
+#### Write Ahead Log (WAL)
+The standard method for ensuring **durability**.
+
+- **Rule**: Modifications are written to a secure "Log File" on disk *before* they are applied to the actual data pages.
+- **Crash Recovery**: If the database loses power, it replays the WAL upon restart to re-apply any lost changes.
 
 #### Write Amplification
 An undesirable phenomenon in storage systems (SSDs and Database Engines) where the actual amount of data written to the physical storage is a multiple of the logical amount of data intended to be written.
