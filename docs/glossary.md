@@ -1,6 +1,5 @@
 !!! warning "Not Complete"
-
-  This glossary is constantly growing as new content is added. 
+    This glossary is constantly growing as new content is added. 
 
 ## \#
 #### 1NF (First Normal Form)
