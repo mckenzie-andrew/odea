@@ -20,6 +20,6 @@ Status: ✅ Available
 The Tool of Interaction. This is the practical application of theory. We move from Data Definition (DDL) to advanced Data Querying (DQL), covering joins, aggregations, window functions, and Common Table Expressions (CTEs) to solve complex data problems.
 
 ### 4. Database Internals & Optimizations
-Status: 🚧 In Development 
+Status: ✅ Available 
 
 The Engineering Deep Dive. This module separates the users from the engineers. We explore the ACID properties, B-Tree indexing, query planning, and concurrency control to understand exactly how the database engine reads and writes to the disk.
