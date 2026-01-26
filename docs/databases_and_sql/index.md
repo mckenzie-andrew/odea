@@ -1,9 +1,4 @@
-## Course
-This curriculum is designed to take you from abstract mathematical logic to high-performance systems engineering. Unlike many bootcamps that start immediately with syntax, this track follows a "First Principles" approach.
-
-We begin with Set Theory, the mathematical bedrock of all relational databases. Once the logic is sound, we move to Data Modeling, focusing on architectural design and hygiene. With a solid design in place, we master SQL to manipulate that data. Finally, we descend into Database Internals, learning how the engine works under the hood to write queries that are not just correct, but performant.
-
-## The Curriculum
+## Courses
 ### 1. Set Theory
 Status: ✅ Available 
 

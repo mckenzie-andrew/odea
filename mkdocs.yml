@@ -58,6 +58,16 @@ nav:
     - "About OpenConduit": index.md
     - "Contributing": contributing.md
     - "Lab Setup": setup.md
+  - Fundamentals:
+    - "Fundamentals": fundamentals/index.md
+    - Data Engineering 101:
+      - "Welcome": fundamentals/data_engineering_101/0_welcome.md
+    - Systems Architecture:
+      - "Welcome": fundamentals/systems_architecture/0_welcome.md
+    - Linux:
+      - "Welcome": fundamentals/linux/0_welcome.md
+    - Git:
+      - "Welcome": fundamentals/git/0_welcome.md
   - Databases and SQL:
     - "Databases and SQL": databases_and_sql/index.md
     - Set Theory:
