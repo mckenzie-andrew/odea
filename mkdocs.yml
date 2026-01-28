@@ -65,6 +65,7 @@ nav:
       - "1: The Landscape": fundamentals/data_engineering_101/1_the_landscape.md
       - "2: The Lifecycle Map": fundamentals/data_engineering_101/2_the_lifecycle_map.md
       - "3: The Nature of Data": fundamentals/data_engineering_101/3_the_nature_of_data.md
+      - "4: Workloads and Architecture": fundamentals/data_engineering_101/4_workloads_and_architecture.md
     - Systems Architecture:
       - "Welcome": fundamentals/systems_architecture/0_welcome.md
     - Linux:
