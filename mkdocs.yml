@@ -62,6 +62,17 @@ nav:
     - "Fundamentals": fundamentals/index.md
     - Data Engineering 101:
       - "Welcome": fundamentals/data_engineering_101/0_welcome.md
+      - "1: The Landscape": fundamentals/data_engineering_101/1_the_landscape.md
+      - "2: The Lifecycle Map": fundamentals/data_engineering_101/2_the_lifecycle_map.md
+      - "3: The Nature of Data": fundamentals/data_engineering_101/3_the_nature_of_data.md
+      - "4: Workloads and Architecture": fundamentals/data_engineering_101/4_workloads_and_architecture.md
+      - "5: Ingestion Strategies": fundamentals/data_engineering_101/5_ingestion_strategies.md
+      - "6: The Storage Layer": fundamentals/data_engineering_101/6_the_storage_layer.md
+      - "7: Distributed System Concepts": fundamentals/data_engineering_101/7_distributed_system_concepts.md
+      - "8: Transformation and Logic": fundamentals/data_engineering_101/8_transformation_and_logic.md
+      - "9: Orchestration": fundamentals/data_engineering_101/9_orchestration.md
+      - "10: Quality and Governance": fundamentals/data_engineering_101/10_quality_and_governance.md
+      - "11: The Serving Layer": fundamentals/data_engineering_101/11_the_serving_layer.md
     - Systems Architecture:
       - "Welcome": fundamentals/systems_architecture/0_welcome.md
     - Linux:
