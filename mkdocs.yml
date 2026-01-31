@@ -73,6 +73,7 @@ nav:
       - "4: Data Representations": fundamentals/systems_architecture/4_data_representation.md
       - "5: The Kernel and User Space": fundamentals/systems_architecture/5_the_kernel_and_user_space.md
       - "6: Process Management": fundamentals/systems_architecture/6_process_management.md
+      - "7: Virtual Memory": fundamentals/systems_architecture/7_virtual_memory.md
     - Linux:
       - "Welcome": fundamentals/linux/0_welcome.md
     - Git:
