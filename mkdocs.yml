@@ -20,15 +20,6 @@ theme:
     - scheme: slate
       primary: amber
       accent: amber
-      toggle:
-        icon: material/weather-night
-        name: Switch to Dark Mode
-    - scheme: default
-      primary: amber
-      accent: amber
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to Light Mode
   font:
     text: Roboto
     code: JetBrains Mono
@@ -58,6 +49,7 @@ nav:
     - "About OpenConduit": index.md
     - "Contributing": contributing.md
     - "Lab Setup": setup.md
+    - "Roadmap": roadmap.md
   - Fundamentals:
     - "Fundamentals": fundamentals/index.md
     - Data Engineering 101:
@@ -75,6 +67,16 @@ nav:
       - "11: The Serving Layer": fundamentals/data_engineering_101/11_the_serving_layer.md
     - Systems Architecture:
       - "Welcome": fundamentals/systems_architecture/0_welcome.md
+      - "1: The Von Neumann Machine": fundamentals/systems_architecture/1_the_von_neumann_machine.md
+      - "2: The Memory Hierarchy": fundamentals/systems_architecture/2_the_memory_hierarchy.md
+      - "3: The Physics of Storage": fundamentals/systems_architecture/3_the_physics_of_storage.md
+      - "4: Data Representations": fundamentals/systems_architecture/4_data_representation.md
+      - "5: The Kernel and User Space": fundamentals/systems_architecture/5_the_kernel_and_user_space.md
+      - "6: Process Management": fundamentals/systems_architecture/6_process_management.md
+      - "7: Virtual Memory": fundamentals/systems_architecture/7_virtual_memory.md
+      - "8: Network Fundamentals": fundamentals/systems_architecture/8_network_fundamentals.md
+      - "9: Application Networking": fundamentals/systems_architecture/9_application_networking.md
+      - "10: Distributed Theory": fundamentals/systems_architecture/10_distributed_theory.md
     - Linux:
       - "Welcome": fundamentals/linux/0_welcome.md
     - Git:
@@ -138,6 +140,7 @@ nav:
       - "9: Locks and Blocking": databases_and_sql/database_internals_and_optimizations/9_locks_and_blocking.md
       - "10: Database Hygiene": databases_and_sql/database_internals_and_optimizations/10_database_hygiene.md
       - "11: Distributing the Load": databases_and_sql/database_internals_and_optimizations/11_distributing_the_load.md
+
   - Glossary: glossary.md
 
 
@@ -151,6 +154,9 @@ extra_javascript:
 plugins:
   - mkdocs_quiz:
       auto_number: true
+  - panzoom:
+      include_selectors:
+        - "img"
 
 copyright: >
   Copyright &copy; 2026 OpenConduit  |  Content licensed under <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a>  |  Labs licensed under <a href="https://opensource.org/licenses/MIT">MIT</a>

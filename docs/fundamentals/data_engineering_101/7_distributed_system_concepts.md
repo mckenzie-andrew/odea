@@ -56,27 +56,7 @@ But the cost is **complexity**.
 ### Visualizing the Architectures
 Let's look at the structural difference between these two approaches.
 
-```mermaid
-graph TB
-    subgraph "Vertical Scaling (Scale Up)"
-        direction TB
-        A[Load Balancer] --> B[Server 1 - Tiny]
-        B -.-> |"$$ Upgrade $$"| C[Server 1 - Massive]
-        C -.-> |"$$ Upgrade $$"| D[Server 1 - Godzilla]
-    end
-
-    subgraph "Horizontal Scaling <br/> (Scale Out)"
-        direction TB
-        X[Load Balancer] --> Y[Master Node]
-        Y --> Z1[Worker 1]
-        Y --> Z2[Worker 2]
-        Y --> Z3[Worker 3]
-        
-        %% Dotted lines for added capacity
-        Y -.-> |"+ Add"| Z4[Worker 4]
-        Y -.-> |"+ Add"| Z5[Worker 5]
-    end
-```
+![sequence diagram](./images/de_101_7_1.svg)
 
 ### Why Data Engineering Chooses "Out"
 In traditional software engineering (building web apps), you can often survive on vertical scaling for a long time. A single massive Postgres database can handle a lot of traffic.
@@ -146,27 +126,7 @@ When the connection between your database nodes fails, you have to make a hard d
 - **Examples**: Cassandra, DynamoDB, CouchDB.
 - **Use Case**: Social Media Likes or Shopping Carts. If you "Like" a tweet and the server is disconnected, it's fine if your friend doesn't see that "Like" for five minutes. It is not acceptable for the "Like" button to crash the app. The business value is in the uptime, not the microsecond precision.
 
-```mermaid
-graph TD
-    subgraph "The Split Brain Scenario"
-        %% We use -.- to make a dotted line and |X| for the label
-        N1["Node A (USA)"] -.- |"❌ Network Cut"| N2["Node B (Europe)"]
-        User1[User] -->|"Write: X=5"| N1
-        User2[User] -->|"Read: X=?"| N2
-    end
-    
-    subgraph "CP Choice"
-        %% I renamed these nodes (e.g., CP_N1) so they don't merge with the nodes above
-        CP_N1["Node A"] -->|Accepts Write| CP_U1[User]
-        CP_N2["Node B"] -->|"Error: Cannot Sync"| CP_U2[User]
-    end
-    
-    subgraph "AP Choice"
-        %% Renamed these nodes as well
-        AP_N1["Node A"] -->|Accepts Write| AP_U1[User]
-        AP_N2["Node B"] -->|"Returns Old Data: X=0"| AP_U2[User]
-    end
-```
+![sequence diagram](./images/de_101_7_2.svg)
 
 #### Why This Matters to You
 As a Data Engineer, you are constantly choosing tools based on this trade-off, even if the marketing brochures don't use the words "CAP Theorem."

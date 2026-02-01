@@ -27,21 +27,7 @@ In an application, when you access a user, you usually need *all* the context ab
 
 **Row-Oriented Storage** capitalizes on this access pattern by storing all the attributes of a single record contiguously on the disk block.
 
-```mermaid
-graph TD
-    subgraph "Logical Table"
-    L1["ID: 1 | Name: Alice | Age: 30"]
-    L2["ID: 2 | Name: Bob   | Age: 25"]
-    end
-
-    subgraph "Physical Disk Layout (Row-Oriented)"
-    P1[Block 1] --> D1["[1, Alice, 30]"]
-    D1 --> D2["[2, Bob, 25]"]
-    end
-
-    L1 -.-> D1
-    L2 -.-> D2
-```
+![sequence diagram](./images/de_101_4_1.svg)
 
 Because `[1, Alice, 30]` is stored together, the disk head seeks once, reads one block, and gets the entire entity. This is incredibly efficient for **Writing** (appending a new block) and **Reading a specific entity** (retrieving one block).
 
@@ -101,20 +87,7 @@ In a Row-Oriented system, to sum the `revenue` column, the disk head must skip o
 
 **Column-Oriented Storage** solves this by storing the values of a single column contiguously on the disk.
 
-```mermaid
-graph TD
-    subgraph "Logical Table"
-    L1["ID: 1, Name: Alice, Region: US"]
-    L2["ID: 2, Name: Bob, Region: UK"]
-    L3["ID: 3, Name: Carol, Region: US"]
-    end
-
-    subgraph "Physical Disk Layout (Column-Oriented)"
-    C1[Block 1: IDs] --> D1["[1, 2, 3]"]
-    C2[Block 2: Names] --> D2["[Alice, Bob, Carol]"]
-    C3[Block 3: Regions] --> D3["[US, UK, US]"]
-    end
-```
+![sequence diagram](./images/de_101_4_2.svg)
 
 When you ask for `SELECT SUM(revenue) FROM sales`, the OLAP engine ignores the blocks containing Names, Dates, and IDs. It goes straight to **Block 3**, reads *only* the revenue integers, and sums them up.
 

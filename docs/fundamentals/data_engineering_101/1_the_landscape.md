@@ -43,18 +43,7 @@ That's you. You are the architect who builds the environment where the other two
 ### Visualizing the Relationship
 We can view the relationship as a dependency graph. The engineer is the foundational asset.
 
-```mermaid
-graph TD
-    subgraph "Infrastructure Layer (Data Engineer)"
-    A[Raw Sources] -->|Ingest| B[Data Lake]
-    B -->|Transform| C[Data Warehouse]
-    end
-
-    subgraph "Value Layer"
-    C -->|Consumption| D(The Analyst)
-    B -->|Experimentation| E(The Scientist)
-    end
-```
+![process diagram](./images/de_101_1_1.svg)
 
 Notice that the analyst and scientist consume from different stages. The scientist often needs the raw complexity of the **Data Lake** to find new features. The analyst needs the refined structure of the **Data Warehouse** for reporting. You must maintain both environments simultaneously.
 
@@ -77,25 +66,7 @@ You will see this pattern in every company, whether they are a three-person star
 ### The Lifecycle Map
 Let's visualize the journey of a single data point—say, a user clicking "Buy" on an e-commerce site.
 
-```mermaid
-graph LR
-    subgraph "Generation"
-    A[App / IoT / API]
-    end
-    
-    subgraph "Ingestion"
-    A -->|Extract| B(Transport)
-    end
-    
-    subgraph "Storage & Transformation"
-    B -->|Load| C[(Raw Storage)]
-    C -->|Process| D[(Refined Storage)]
-    end
-    
-    subgraph "Serving"
-    D -->|Deliver| E[Analytics / ML / User]
-    end
-```
+![process diagram](./images/de_101_1_2.svg)
 
 #### 1. Generation
 This is "The Source." It is where data is born.
@@ -189,17 +160,7 @@ You must negotiate these three metrics with your stakeholders (the Analysts and 
 ### The Hierarchy of Data Needs
 We can visualize this using Maslow's Hierarchy. You cannot focus on "AI/ML" (Self-Actualization) if you haven't solved "Availability" (Physiological Needs).
 
-```mermaid
-graph BT
-    A["Basement: <br/>Availability & Freshness"]
-    B["Foundation: <br/>Quality & Accuracy"]
-    C["Interface: <br/>Usability & Documentation"]
-    D["Penthouse: <br/>Advanced Analytics & ML"]
-    
-    A --> B
-    B --> C
-    C --> D
-```
+![sequence diagram](./images/de_101_1_3.svg)
 
 1. **Bottom Layer (The Basement)**: The data must be there, and it must be on time. If it's not, nothing else matters.
 2. **Second Layer (The Foundation)**: The data must be accurate. No duplicates, no silent filtering.

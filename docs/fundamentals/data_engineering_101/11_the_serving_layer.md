@@ -33,33 +33,7 @@ To solve this, we introduce an architectural component known as the **Semantic L
 
 Think of the semantic layer as the API for your data warehouse. It decouples the **Physical Data Model** (tables, columns, partitions) from the **Logical Data Model** (Revenue, Churn, Active Users).
 
-```mermaid
-flowchart LR
-    subgraph Warehouse ["The Physical Reality"]
-        T1[(Fact_Orders)]
-        T2[(Dim_Users)]
-    end
-
-    subgraph Semantic ["The Semantic Layer (The Translator)"]
-        L1(Metric: Revenue)
-        L2(Metric: Churn Rate)
-        L3(Dimension: User Region)
-    end
-
-    subgraph Consumption ["The Consumption Layer"]
-        BI[BI Dashboard]
-        NB[Data Notebook]
-        XL[Excel / Sheets]
-    end
-
-    T1 --> L1
-    T1 --> L2
-    T2 --> L3
-    L1 --> BI
-    L1 --> NB
-    L2 --> BI
-    L3 --> XL
-```
+![sequence diagram](./images/de_101_11_1.svg)
 
 The semantic layer is where you define **metrics** and **dimensions** once, in code.
 
@@ -138,33 +112,7 @@ Reverse ETL is the process of pumping that "refined truth" back into the operati
 ### The Architecture: Closing the Loop
 If standard ETL is bringing ore from the mine to the factory, Reverse ETL is shipping finished cars to the dealerships.
 
-```mermaid
-flowchart LR 
-    subgraph Apps_Source ["Sources (The Silos)"]
-        SF[Salesforce]
-        STR[Stripe]
-        WEB[Web Events]
-    end
-
-    subgraph Warehouse ["The Brain"]
-        DW[(Data Warehouse)]
-        Model["Derived Model: <br/> 'High Value Users'"]
-    end
-
-    subgraph Apps_Dest ["Destinations (The Action)"]
-        SF_Dest["Salesforce <br/> (Update Lead Score)"]
-        Mail["Email Tool <br/> (Send Coupon)"]
-        Slack["Slack <br/> (Alert Sales Rep)"]
-    end
-
-    SF --> DW
-    STR --> DW
-    WEB --> DW
-    DW --> Model
-    Model -- Reverse ETL --> SF_Dest
-    Model -- Reverse ETL --> Mail
-    Model -- Reverse ETL --> Slack
-```
+![sequence diagrams](./images/de_101_11_2.svg)
 
 ### The Mechanics: The Diff Engine
 You might think, "I can just write a script to query the database and POST to the Salesforce API."
@@ -266,34 +214,7 @@ If you hook a user-facing mobile app directly to your data warehouse, your app w
 
 To build a data product, you need a **speed layer** (often called a "serving store").
 
-```mermaid
-flowchart LR 
-    subgraph Slow_Cold ["The Cold Layer (Source of Truth)"]
-        DW[(Data Warehouse)]
-        note1["Optimized for: <br/> Scan Volume <br/> Complexity"]
-    end
-
-    subgraph Fast_Hot ["The Hot Layer (Serving Store)"]
-        Redis[(Redis / DynamoDB)]
-        PG[(Postgres / MySQL)]
-        note2["Optimized for: <br/> Concurrency <br/> Millisecond Reads"]
-    end
-
-    subgraph Interface ["The API Layer"]
-        API[API Gateway]
-        Doc[Documentation / Swagger]
-    end
-
-    subgraph Consumer ["The Customer"]
-        App[Mobile App]
-        Ext[External Partner]
-    end
-
-    DW -- Sync Job (Reverse ETL) --> Redis
-    Redis --> API
-    API --> App
-    API --> Ext
-```
+![sequence diagram](./images/de_101_11_3.svg)
 
 **The Pattern**:
 

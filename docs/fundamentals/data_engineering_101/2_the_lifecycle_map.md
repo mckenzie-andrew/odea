@@ -59,16 +59,7 @@ We have two primary architectural patterns for moving this mass: **Push** vs. **
 ### The Pull Model (Batch)
 Your system initiates the transfer. You wake up on a schedule (say, every hour), reach out to the source, and drag the data over.
 
-```mermaid
-sequenceDiagram
-    participant Orchestrator
-    participant Source
-    participant Destination
-    
-    Orchestrator->>Source: "Give me data from the last hour"
-    Source-->>Orchestrator: [Data Payload]
-    Orchestrator->>Destination: Write Data
-```
+![sequence diagram](./images/de_101_2_1.svg)
 
 - **The Physics**: This creates "spikey" loads. The network is quiet for 59 minutes, then flooded for 1 minute.
 - **The Trade-off**: High latency. The data is always at least an hour old.
@@ -76,16 +67,7 @@ sequenceDiagram
 ### The Push Model (Streaming)
 The source initiates the transfer. As soon as an event occurs, the source throws it onto the wire, targeting a "Listener" or an "Event Bus" (like Kafka) that you manage.
 
-```mermaid
-sequenceDiagram
-    participant Source
-    participant EventBus
-    participant Consumer
-    
-    Source->>EventBus: Event Occurred! (Push)
-    EventBus->>Consumer: Here is the event
-    Consumer->>Consumer: Process immediately
-```
+![process diagram](./images/de_101_2_2.svg)
 
 - **The Physics**: This requires a system that is *always* on and ready to catch. If your catcher goes down, the source might drop the data on the floor.
 - **The Trade-off**: Low latency, but high complexity. You must handle "Backpressure"—what happens if the source throws data faster than you can catch it?
@@ -97,14 +79,7 @@ The data you just ingested is likely "toxic." It contains duplicates, test accou
 
 The Midstream is where we stabilize the chaos. We perform two fundamental actions: we **Store** (Park) and we **Transform** (Refine).
 
-
-```mermaid
-flowchart LR
-    A[Ingestion] --> B[("Transient Storage<br/>Kafka/Buffer")]
-    B --> C[("Raw Storage<br/>Data Lake")]
-    C --> D{Transformation Engine}
-    D --> E[("Curated Storage<br/>Data Warehouse")]
-```
+![sequence diagram](./images/de_101_2_3.svg)
 
 ### The Parking Lots: Storage Layers
 In software engineering, you usually have one database. In data engineering, we move data through a hierarchy of storage systems, each optimized for a different "temperature" of data.
@@ -165,20 +140,7 @@ This is false. Data sitting in a warehouse is a liability, not an asset. It cost
 
 The **Downstream** is the "Last Mile" of our infrastructure. It is where the rubber meets the road. We serve three distinct types of customers.
 
-```mermaid
-graph TD
-    Warehouse[(Data Warehouse)]
-    
-    subgraph "The Downstream"
-        BI["Analytics / BI<br/>(Humans)"]
-        ML["Machine Learning<br/>(Models)"]
-        RETL["Reverse ETL<br/>(Applications)"]
-    end
-    
-    Warehouse -->|SQL / JDBC| BI
-    Warehouse -->|Python / Feature Store| ML
-    Warehouse -->|API Push| RETL
-```
+![sequence diagram](./images/de_101_2_4.svg)
 
 #### 1. The Human Interface: Analytics and BI
 This is the classic use case. You serve data to a business intelligence (BI) tool like Power BI or Looker.

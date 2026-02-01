@@ -18,23 +18,7 @@ Because the destination was expensive, you had to treat it like a VIP club. You 
 2. **Transform**: Process it on a separate, dedicated server (using tools like Informatica or custom Java/Python scripts). This is where you filtered out bad rows, joined tables, and aggregated numbers.
 3. **Load**: Insert only the pristine, aggregated result into the warehouse.
 
-```mermaid
-flowchart LR
-    subgraph Source
-    A[(App DB)]
-    end
-    
-    subgraph "Processing Server"
-    B[Extract] --> C[Transform Logic]
-    end
-    
-    subgraph Destination
-    D[(Data Warehouse)]
-    end
-
-    A --> B
-    C -->|Clean Data Only| D
-```
+![sequence diagram](./images/de_101_8_1.svg)
 
 ### The Silent Failure of ETL
 The physics of ETL seem sound: save resources at the destination. But it introduced a catastrophic fragility regarding **information loss**.
@@ -58,21 +42,7 @@ The paradigm flipped to **ELT**.
 2. **Load**: Dump the data, in its rawest, ugliest form, directly into the warehouse (or data lake).
 3. **Transform**: Use the warehouse's own SQL engine to refine the raw data into clean tables.
 
-```mermaid
-flowchart LR
-    subgraph Source
-    A[(App DB)]
-    end
-    
-    subgraph Destination: The Modern Warehouse
-    B[(Raw / Landing Zone)]
-    C[(Clean / Gold Zone)]
-    
-    B -->|SQL Transformation| C
-    end
-
-    A -->|Extract & Load| B
-```
+![sequence diagram](./images/de_101_8_2.svg)
 
 ### Why ELT Won (Mostly)
 The shift to ELT is the primary reason why "Analytics Engineer" is now a job title. It democratized transformation. You no longer need to know Scala or Python to clean data; you just need to know SQL.
@@ -264,20 +234,7 @@ In data engineering, idempotency means **if the pipeline crashes halfway through
 ### The Anti-Pattern: The Blind Append
 The default behavior of most databases is just to add new rows.
 
-```mermaid
-sequenceDiagram
-    participant Source
-    participant Pipeline
-    participant Table
-    
-    Source->>Pipeline: Batch of 100 records
-    Pipeline->>Table: INSERT INTO table (writes 100 rows)
-    Note over Pipeline: NETWORK FAILURE!
-    Note over Pipeline: Pipeline doesn't know if the INSERT worked.
-    Pipeline->>Pipeline: Retry!
-    Pipeline->>Table: INSERT INTO table (writes same 100 rows)
-    Note over Table: Table now has 200 rows. Duplicates!
-```
+![sequence diagram](./images/de_101_8_3.svg)
 
 #### Strategy 1: The Atomic Overwrite (The Sledgehammer)
 The easiest way to achieve idempotency is to destroy before you create. If you are processing data for '2023-01-01,' you first delete any existing data for that day.

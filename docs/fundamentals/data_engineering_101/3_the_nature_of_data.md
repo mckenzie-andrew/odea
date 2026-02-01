@@ -87,24 +87,7 @@ This is the Data Lake approach. We accept everything into the system (usually sa
 
     This ensures you never lose data due to a format change, but you still provide clean tables for your analysts.
 
-```mermaid
-flowchart LR
-    subgraph Source
-    A[App Data]
-    end
-
-    subgraph Schema-on-Write
-    A -->|Strict Check| B{Valid?}
-    B -- Yes --> C[Database]
-    B -- No --> D[REJECT / FAIL]
-    end
-
-    subgraph Schema-on-Read
-    A -->|Dump Everything| E[Raw File Storage]
-    E -->|Apply Logic Later| F[Query Engine]
-    F -- Bad Data? --> G[Runtime Error]
-    end
-```
+![sequence diagram](./images/de_101_3_1.svg)
 
 ### The Physics of Reliability
 Understanding form is about understanding **latency** and **trust**.

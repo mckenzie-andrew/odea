@@ -52,17 +52,7 @@ Does the data adhere to the rules of physics or business?
 ### Visualizing the Defense
 We insert these tests *after* ingestion or transformation steps but *before* promotion to production tables.
 
-```mermaid
-flowchart LR
-    A[Raw Source] --> B(Ingestion)
-    B --> C{Quality Tests}
-    
-    C -- Pass --> D[Production Warehouse]
-    C -- Fail --> E[Quarantine / Dead Letter Queue]
-    
-    D --> F[Dashboards]
-    E --> G((Alert Engineer))
-```
+![sequence diagram](./images/de_101_10_1.svg)
 
 ### Beyond Testing: Data Observability
 Testing catches "Known Unknowns"—issues we can predict (e.g., "I predict this column might be null"). But what about "Unknown Unknowns"?
@@ -131,16 +121,7 @@ We separate PII (Personally Identifiable Information—names, emails, IP address
 
 **The Result**: When User 55 asks to be deleted, you execute a single `DELETE` in the PII vault. The data lake still contains millions of records for User 55's token, but since the link between the token and the person is destroyed, those records are now truly anonymous. The data remains useful for aggregate analysis (e.g., "How many users clicked X?"), but it is legally compliant.
 
-```mermaid
-flowchart LR
-    A[Raw Event: 'John Doe, IP: 1.2.3.4, Clicked Buy'] --> B{Tokenizer}
-    
-    B -->|Extract PII| C[(PII Vault DB)]
-    C -.->|Generate Token: 'User_X99'| B
-    
-    B -->|Anonymized Event| D[Data Lake]
-    D -- Contains --> E["'User_X99, Clicked Buy'"]
-```
+![sequence diagram](./images/de_101_10_2.svg)
 
 ### Architectural Solution 2: Crypto-Shredding
 Sometimes, you must store PII in the lake. Perhaps the analytics team needs to segment users by email domain.
@@ -212,31 +193,7 @@ Data engineering is rarely about isolated tables. It is about flow. Data moves f
 
 This flow forms a **DAG**. Lineage is the visualization of that graph. It allows us to trace the path of a single data point from its birth in a mobile app to its death in a PowerPoint slide.
 
-```mermaid
-flowchart LR
-    subgraph Sources
-    A[Postgres: Users]
-    B[API: Stripe]
-    end
-
-    subgraph Warehouse
-    C[Staging: Raw Users]
-    D[Staging: Raw Payments]
-    E[Fact Table: Monthly Revenue]
-    end
-
-    subgraph BI_Layer
-    F[Exec Dashboard]
-    G[Marketing Report]
-    end
-
-    A --> C
-    B --> D
-    C --> E
-    D --> E
-    E --> F
-    E --> G
-```
+![sequence diagram](./images/de_101_10_3.svg)
 
 ### The "Impact Analysis" Superpower
 Why do we care about drawing these lines? It's not for pretty pictures. It is to prevent the most common disaster in our profession: **The Unintended Consequence**.

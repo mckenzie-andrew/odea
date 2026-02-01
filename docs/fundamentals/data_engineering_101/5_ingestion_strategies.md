@@ -21,20 +21,7 @@ The workflow typically follows a distinct rhythm, often referred to as a "Job":
 3. **Staging**: The data is pulled across the network and typically landed in a file storage system (like AWS S3) in a format like CSV, Avro, or Parquet.
 4. **Loading**: The data warehouse (e.g., Snowflake) consumes that file in one large gulp.
 
-```mermaid
-sequenceDiagram
-    participant S as Scheduler
-    participant DB as Source DB
-    participant S3 as Staging (S3)
-    participant DW as Data Warehouse
-
-    S->>S: Wake up (00:00 AM)
-    S->>DB: SELECT * FROM orders WHERE date = yesterday
-    DB->>S3: Stream 1,000,000 rows (CSV/Parquet)
-    S3-->>S: File Saved (batch_yesterday.parquet)
-    S->>DW: COPY INTO orders_table FROM 's3://batch_yesterday.parquet'
-    DW-->>S: Success
-```
+![sequence diagram](./images/de_101_5_1.svg)
 
 ### The Physics of Efficiency
 Why do we do this? Why wait 24 hours to see data?
@@ -90,21 +77,7 @@ This architecture relies on three critical components that remove the "magic" fr
 2. **Partitioning**: A single file is too slow for "Big Data." So, we split the log into multiple lanes (Partitions). This allows us to scale out.
 3. **Consumer Groups**: If the firehose is too strong for one worker, we add more. The system automatically assigns different partitions to different workers. Worker A handles User IDs 1-100; Worker B handles 101-200.
 
-```mermaid
-graph LR
-    subgraph "The Log (Topic)"
-        P1[Partition 1]
-        P2[Partition 2]
-    end
-    
-    Source -->|Writes Event| P1
-    Source -->|Writes Event| P2
-    
-    P1 -->|Reads Offset 501| C1[Consumer A]
-    P2 -->|Reads Offset 890| C2[Consumer B]
-    
-    C1 -->|Ack Offset 501| Zookeeper[Offset Keeper]
-```
+![sequence diagram](./images/de_101_5_2.svg)
 
 ### The Physics of "Real-Time"
 Why do we endure the complexity? **Latency**.
@@ -175,16 +148,7 @@ The core philosophy is, "Streaming is fast but unreliable. Batch is slow but per
 
 **The Cost**: This architecture is robust, but it violates the DRY principle (Don't Repeat Yourself). You often end up writing the same transformation logic twice—once in your streaming framework (e.g., Kafka Streams) and once in your batch framework (e.g., SQL/dbt). Maintaining a parity between these two codebases is a massive engineering burden.
 
-```mermaid
-graph TD
-    Data[Raw Data Source] --> Stream["Speed Layer<br>(Kafka/Flink)"]
-    Data --> Batch["Batch Layer<br>(S3/Snowflake)"]
-    
-    Stream -->|Real-time View| Serving[Serving Layer]
-    Batch -->|Historical View| Serving
-    
-    Serving --> User[Dashboard]
-```
+![sequence diagram](./images/de_101_5_3.svg)
 
 ### The Litmus Test: Vanity vs. Value
 As an architect, your most powerful tool is not code; it is the word "**why**"?

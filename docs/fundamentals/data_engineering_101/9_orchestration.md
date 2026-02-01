@@ -52,10 +52,7 @@ This relationship is **dependency**:
 - **Upstream**: The task that must happen first (ingest).
 - **Downstream**: The task that waits (report).
 
-```mermaid
-flowchart LR
-    A[Ingest Data] -->|Success Signal| B[Run Report]
-```
+![sequence diagram](./images/de_101_9_1.svg)
 
 ### The Death of the "Safety Buffer"
 When you move to dependency-based scheduling (using tools like Airflow, Dagster, or Prefect), you eliminate the "safety gap."
@@ -92,13 +89,7 @@ It is a network of connections, not just a linear list. A single upstream task (
 
 This allows for **parallelism**. If "dashboard A" and "dashboard B" both depend on "ingest," but not on each other, the orchestrator can run them effectively at the same time.
 
-```mermaid
-graph LR
-    A[Ingest Users] --> B[Clean Users]
-    B --> C[Marketing Dashboard]
-    B --> D[Finance Report]
-    B --> E[Churn Model]
-```
+![sequence diagram](./images/de_101_9_2.svg)
 
 #### 3. Acyclic (The Golden Rule)
 This is the law: **No Cycles**.
@@ -152,26 +143,7 @@ The orchestrator spins up hundreds of runs. For each run, it injects a different
 
 To the code, it feels like it is actually that day. It reads the raw logs from that specific date partition, applies the *new* tax logic, and overwrites the old data in the warehouse.
 
-```mermaid
-sequenceDiagram
-    participant Orchestrator
-    participant Job
-    participant Warehouse
-
-    Note over Orchestrator: User requests Backfill (Jan 1 - Jan 3)
-    
-    Orchestrator->>Job: Run(date='Jan 1')
-    Job->>Warehouse: DELETE WHERE date='Jan 1'
-    Job->>Warehouse: INSERT new data for 'Jan 1'
-    
-    Orchestrator->>Job: Run(date='Jan 2')
-    Job->>Warehouse: DELETE WHERE date='Jan 2'
-    Job->>Warehouse: INSERT new data for 'Jan 2'
-
-    Orchestrator->>Job: Run(date='Jan 3')
-    Job->>Warehouse: DELETE WHERE date='Jan 3'
-    Job->>Warehouse: INSERT new data for 'Jan 3'
-```
+![sequence diagram](./images/de_101_9_3.svg)
 
 ### The Catch Up Problem
 There is a physical limit to backfilling: **speed**.
