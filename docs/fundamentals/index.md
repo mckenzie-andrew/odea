@@ -3,8 +3,6 @@
 The Philosophical Map. Before touching a tool, you must understand the territory. This module defines the Data Engineering Lifecycle (Generation, Ingestion, Storage, Serving) and the core mandate of the profession: reliability. We explore the critical architectural distinctions between OLTP and OLAP workloads.
 
 ### 2. Systems Architecture
-Status: 🚧 Under Development
-
 The Hardware Reality. Data does not live in the "cloud"; it lives on physical hardware governed by physics. This module covers the Von Neumann architecture, the Memory Hierarchy (Latency numbers), and the physical constraints of Disk I/O that dictate all future performance tuning.
 
 ### 3. Linux Internals

@@ -76,6 +76,7 @@ nav:
       - "7: Virtual Memory": fundamentals/systems_architecture/7_virtual_memory.md
       - "8: Network Fundamentals": fundamentals/systems_architecture/8_network_fundamentals.md
       - "9: Application Networking": fundamentals/systems_architecture/9_application_networking.md
+      - "10: Distributed Theory": fundamentals/systems_architecture/10_distributed_theory.md
     - Linux:
       - "Welcome": fundamentals/linux/0_welcome.md
     - Git:
