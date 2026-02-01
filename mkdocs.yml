@@ -79,6 +79,7 @@ nav:
       - "10: Distributed Theory": fundamentals/systems_architecture/10_distributed_theory.md
     - Linux:
       - "Welcome": fundamentals/linux/0_welcome.md
+      - "1: Introduction": fundamentals/linux/1_introduction.md
     - Git:
       - "Welcome": fundamentals/git/0_welcome.md
   - Databases and SQL:
