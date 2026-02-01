@@ -260,4 +260,16 @@ Why do data engineers generally prefer the CLI (Command Line Interface) over a G
 <!-- mkdocs-quiz results -->
 
 ## Lab
-Please complete module 1 labs in the companion GitHub repository.
+**Note**: There are no labs for this first module. However, there is some extra information that I wanted to share before we moved on, so you can make sure your local Docker environment is working.
+
+Labs will be a little different in this course than others. We will continue to use the same Jupyter setup we have been using and that is described in "Lab Setup" on the home page. But instead of running from notebooks, we will provide the challenges "here" and the challenge solutions, but you need to navigate into the "shell" of the Jupyter environment to access Bash. (Also, since the default is a eye-sore white background for Jupyter terminals, I have provided instructions on how to change the theme to Dark mode, to save your poor eyes). 
+
+When accessing the Jupyter environment (as described in "Lab Setup") click on "Terminal", under "Other"; instead of loading any notebooks from the file folders on the left (like we are used to):
+
+![shell icon location on jupyter lab](./images/shell_icon.png)
+
+To change the theme, and save your eyes; click the "Settings" dropdown at the top, hover over "Theme" and choose "JupyterLab Dark".
+
+![where to find dark mode](./images/changing_theme.png)
+
+Feel free to utilize any commands that we provided in the chapter to get acquainted. When your setup is complete let's move on to the next module.
